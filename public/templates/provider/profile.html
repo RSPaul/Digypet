@@ -1,0 +1,70 @@
+<div class="container">
+    <h1>Edit Profile</h1>
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+          <h6>Upload a different photo...</h6>
+          
+          <input type="file" class="form-control">
+        </div>
+      </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info" ng-init="me()">
+        <div class="alert alert-{{alertClass}} alert-dismissable" ng-if="alertMessage">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+          This is an <strong>.alert</strong>. Use this to show important messages to the user.
+        </div>
+        <h3>Personal info</h3>
+        
+        <form class="form-horizontal" novalidate autocomplete="off" role="form" name="profileForm" ng-submit="updateProfile()">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input required class="form-control" type="text" ng-model="user.first_name" name="first_name" >
+              <span class="required" ng-show="profileForm.first_name.$error.required">First name is required.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input required class="form-control" type="text" ng-model="user.last_name" name="last_name" >
+              <span class="required" ng-show="profileForm.last_name.$error.required">Last name is required.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input required class="form-control" type="text" ng-model="user.email" name="email" readonly>
+              <span class="required" ng-show="profileForm.email.$error.required">Email is required.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" name="password" ng-model="user.password" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" ng-model="user.confirm_password" name="confirm_password" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="submit" class="btn btn-primary" value="Update Profile"  ng-disabled="profileForm.$invalid">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<hr>
