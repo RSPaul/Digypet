@@ -19,11 +19,11 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            if (Auth::user()->user_type == "Provider") {
+            if (Auth::user()->type == "Provider") {
                 return redirect('/provider');
-            } else if (Auth::user()->user_type == "User") {
+            } else if (Auth::user()->type == "User") {
                 return redirect('/user');
-            } else if (Auth::user()->user_type == "Admin") {
+            } else if (Auth::user()->type == "Admin") {
                 return redirect('/admin');
             } else {
                 return redirect('/user');
