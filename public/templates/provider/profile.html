@@ -42,6 +42,42 @@
               <input required class="form-control" type="text" ng-model="user.email" name="email" readonly>
               <span class="required" ng-show="profileForm.email.$error.required">Email is required.</span>
             </div>
+          </div>  
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Pets:</label>
+            <div class="col-lg-8">
+              <input class="" type="checkbox" value="Dogs" ng-model="user.pets.dogs" name="pets"> Dogs 
+              <input class="" type="checkbox" value="Cats" ng-model="user.pets.cats" name="pets"> Cats 
+              <input class="" type="checkbox" value="Birds" ng-model="user.pets.birds" name="pets"> Birds 
+              <input class="" type="checkbox" value="Hamsters" ng-model="user.pets.hamsters" name="pets"> Hamsters 
+              <input class="" type="checkbox" value="Turtles" ng-model="user.pets.turtles" name="pets"> Turtles 
+              <input class="" type="checkbox" value="Guinea Pig" ng-model="user.pets.guinea" name="pets"> Guinea Pig 
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Services:</label>
+            <div class="col-lg-8">
+              <input class="" type="checkbox" value="Training" ng-model="user.service_pricing.training" name="services"> Training  <input class="form-control" placeholder="Price" type="text" ng-if="user.service_pricing.training" ng-model="user.service_pricing.trainingprice" name="trainingprice">
+
+              <input class="" type="checkbox" value="Walking" ng-model="user.service_pricing.walking" name="services"> Walking  <input class="form-control" placeholder="Price" type="text" ng-if="user.service_pricing.walking" ng-model="user.service_pricing.walkingprice" name="walkingprice">
+
+              <input class="" type="checkbox" value="Potty Training" ng-model="user.service_pricing.pottytraining" name="services"> Potty Training  <input class="form-control" placeholder="Price" type="text" ng-if="user.service_pricing.pottytraining" ng-model="user.service_pricing.pottytrainingprice" name="pottytrainingprice">
+
+              <input class="" type="checkbox" value="Bathing" ng-model="user.service_pricing.bathing" name="services"> Bathing  <input class="form-control" placeholder="Price" type="text" ng-if="user.service_pricing.bathing" ng-model="user.service_pricing.bathingprice" name="bathingprice">
+
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Address:</label>
+            <div class="col-lg-8">
+              <textarea class="form-control" type="text" ng-model="user.address" name="address" ></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Bio:</label>
+            <div class="col-lg-8">
+              <textarea class="form-control" type="text" ng-model="user.bio" name="bio" ></textarea>
+            </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>

@@ -37,6 +37,8 @@ class HomeController extends Controller
     public function authUser(Request $request) {
         if (Auth::check()):
             $user = User::where(['id' => Auth::user()->id])->first();
+            $user['pets'] = unserialize($user['pets']);
+            $user['service_pricing'] = unserialize($user['service_pricing']);
             return response()->json($user);
         endif;
     }
@@ -46,6 +48,10 @@ class HomeController extends Controller
             if($request->isMethod('post')) {
                 $data = $request->all();
                 $input = $request->only('first_name', 'last_name', 'email', 'type', 'status', 'address', 'pets', 'service_pricing', 'images', 'profile_picture', 'bio',);
+
+                $input['pets'] = serialize($input['pets']);
+                $input['service_pricing'] = serialize($input['service_pricing']);
+
                 User::where(['id' => Auth::user()->id])
                         ->update($input);  
 

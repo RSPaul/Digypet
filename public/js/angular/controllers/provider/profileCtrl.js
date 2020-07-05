@@ -1,6 +1,6 @@
 providerApp.controller('ProfileCtrl', function($scope, $http, $timeout, $locale, $location, $rootScope) {
 	$rootScope.activePath = $location.path();
-	$scope.user = {password: '', confirm_password: '', profile_picture: '/uploads/profiles/l60Hf.png'};
+	$scope.user = {password: '', confirm_password: '',pets: [],  profile_picture: '/uploads/profiles/l60Hf.png'};
 	$scope.alertClass = 'success';
 	$scope.alertMessage = '';
 
@@ -21,6 +21,7 @@ providerApp.controller('ProfileCtrl', function($scope, $http, $timeout, $locale,
 	}
 
 	$scope.updateProfile = function() {
+		//console.log($scope.user);
 		$http.post('/api/profile', $scope.user)
 		.then(function (response) {
 		  	var response = response.data;
