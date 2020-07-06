@@ -16,4 +16,6 @@ class ProviderController extends Controller
     public function dashboard(Request $request) {
     	return view('provider.dashboard');
     }
+
+
 }
