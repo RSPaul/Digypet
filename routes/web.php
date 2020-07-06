@@ -22,6 +22,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 /*
+* Serach Routes
+*/
+Route::get('/search', 'SearchController@index')->name('search');
+
+
+/*
 * Generic API Routes
 */
 Route::get('/api/me', 'HomeController@authUser')->name('auth_user');
@@ -32,4 +38,3 @@ Route::post('/api/profile', 'HomeController@updateProfile')->name('update_auth_u
 */
 Route::get('/provider', 'Provider\ProviderController@dashboard')->name('provider_dashboard');
 Route::get('/provider/profile', 'Provider\ProviderController@dashboard')->name('provider_profile');
-// Route::post('/api/providerImages', 'Provider\ProviderController@updateproviderImages')->name('update_provider_images');

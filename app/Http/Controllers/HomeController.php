@@ -39,6 +39,7 @@ class HomeController extends Controller
             $user = User::where(['id' => Auth::user()->id])->first();
             $user['pets'] = unserialize($user['pets']);
             $user['service_pricing'] = unserialize($user['service_pricing']);
+            $user['images'] = unserialize($user['images']);
             return response()->json($user);
         endif;
     }
@@ -52,6 +53,31 @@ class HomeController extends Controller
                 $input['pets'] = serialize($input['pets']);
                 $input['service_pricing'] = serialize($input['service_pricing']);
 
+                //upload image
+                if(isset($input['images']) && is_array($input['images'])) {
+                    $files = $data['images'];
+                    $counter=0;
+                    $images = array();
+                    foreach($files as $file) {
+                        if(strpos($file, "data:") !== false) {
+                            $file_date = $file;
+                            list($type, $file_date) = explode(';', $file_date);
+                            list(, $file_date)      = explode(',', $file_date);
+                            $file_date = base64_decode($file_date);
+                            $file_type = explode("/", $type);
+                            //print_r($file_type);die();
+                            $file_name = $counter.time().'.' . $file_type[1];
+                            $path = public_path() . "/uploads/providers/" . $file_name;
+                            file_put_contents($path, $file_date);
+                            array_push($images, $file_name);
+                            $counter++;
+
+                        } else {
+                            array_push($images, $file);
+                        }
+                    }
+                }   
+                $input['images'] = serialize($images);
                 User::where(['id' => Auth::user()->id])
                         ->update($input);  
 
