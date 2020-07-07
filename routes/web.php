@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 * Serach Routes
 */
 Route::get('/search', 'SearchController@index')->name('search');
+Route::get('/api/getProviders', 'SearchController@getProviders')->name('get_providers');
 
 
 /*
