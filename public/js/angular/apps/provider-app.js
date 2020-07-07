@@ -11,6 +11,26 @@ providerApp.config(function($routeProvider, $locationProvider) {
         templateUrl : "templates/provider/dashboard.html",
         controller: 'DashboardCtrl'
     })
+    .when("/provider/bookings", {
+        templateUrl : "templates/provider/bookings.html",
+        controller: 'ProfileCtrl'
+    })
+    .when("/provider/services", {
+        templateUrl : "templates/provider/services.html",
+        controller: 'ServicesCtrl'
+    })
+    .when("/provider/service/add", {
+        templateUrl : "templates/provider/add-service.html",
+        controller: 'ServicesCtrl'
+    })
+    .when("/provider/payments", {
+        templateUrl : "templates/provider/payments.html",
+        controller: 'ProfileCtrl'
+    })
+    .when("/provider/messages", {
+        templateUrl : "templates/provider/messages.html",
+        controller: 'ProfileCtrl'
+    })
     .when("/provider/profile", {
         templateUrl : "templates/provider/profile.html",
         controller: 'ProfileCtrl'

@@ -48,7 +48,7 @@ class HomeController extends Controller
         if (Auth::check()):
             if($request->isMethod('post')) {
                 $data = $request->all();
-                $input = $request->only('first_name', 'last_name', 'email', 'type', 'status', 'address', 'pets', 'service_pricing', 'images', 'profile_picture', 'bio',);
+                $input = $request->only('first_name', 'last_name', 'email', 'type', 'status', 'address', 'pets', 'service_pricing', 'images', 'profile_picture', 'bio');
 
                 $input['pets'] = serialize($input['pets']);
                 $input['service_pricing'] = serialize($input['service_pricing']);

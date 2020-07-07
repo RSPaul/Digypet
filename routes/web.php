@@ -40,3 +40,14 @@ Route::post('/api/profile', 'HomeController@updateProfile')->name('update_auth_u
 */
 Route::get('/provider', 'Provider\ProviderController@dashboard')->name('provider_dashboard');
 Route::get('/provider/profile', 'Provider\ProviderController@dashboard')->name('provider_profile');
+Route::get('/provider/bookings', 'Provider\ProviderController@dashboard')->name('provider_bookings');
+Route::get('/provider/services', 'Provider\ProviderController@dashboard')->name('provider_services');
+Route::get('/provider/service/add', 'Provider\ProviderController@dashboard')->name('provider_add_service');
+Route::get('/provider/payments', 'Provider\ProviderController@dashboard')->name('provider_payments');
+Route::get('/provider/message', 'Provider\ProviderController@dashboard')->name('provider_messages');
+
+/*
+* Provider API Routes
+*/
+Route::get('/api/provider/services', 'Provider\ProviderController@services')->name('provider_add_pet_service');
+Route::post('/api/provider/service/add', 'Provider\ProviderController@addPetService')->name('provider_add_pet_service');

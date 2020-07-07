@@ -23,9 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('type');
             $table->boolean('status')->default(0);
             $table->text('address')->nullable();
-            $table->string('pets')->nullable();
-            $table->text('service_pricing')->nullable();
-            $table->text('images')->nullable();
+            //$table->string('pets')->nullable();
+            //$table->text('service_pricing')->nullable();
+            //$table->text('images')->nullable();
             $table->string('profile_picture')->nullable();
             $table->text('bio')->nullable();
             $table->rememberToken();

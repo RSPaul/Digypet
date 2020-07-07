@@ -56,8 +56,20 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="{{ route('provider_profile') }}">
+                                    <a class="dropdown-item" href="{{ route('provider_profile') }}">
                                         Profile
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('provider_bookings') }}">
+                                        Bookings
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('provider_services') }}">
+                                        Services
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('provider_payments') }}">
+                                        Payment
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('provider_messages') }}">
+                                        Messages
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -99,5 +111,6 @@
     <script src="{{asset('js/angular/libs/dirPagination.js')}}"></script>
     <script src="{{asset('js/angular/controllers/provider/profileCtrl.js')}}"></script>
     <script src="{{asset('js/angular/controllers/provider/dashboardCtrl.js')}}"></script>
+    <script src="{{asset('js/angular/controllers/provider/servicesCtrl.js')}}"></script>
 </body>
 </html>
