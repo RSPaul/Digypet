@@ -27,6 +27,26 @@
       <div class="row filterrow">
         <input type="text" placeholder="Search" class="form-control" ng-model="pd.providername" name="providername" />
       </div>
+      <div class="row filterrow">
+        <select name="pettype" ng-model="pd.pettype" class="form-control" ng-change="filterByPetType()">
+          <option value="">Pet Type</option>
+          <option value="dogs">Dogs</option>
+          <option value="cats">Cats</option>
+          <option value="birds">Birds</option>
+          <option value="hamsters">Hamsters</option>
+          <option value="turtles">Turtles</option>
+          <option value="guinea">Guinea Pig</option>
+        </select>
+      </div>
+      <div class="row filterrow">
+        <select name="servicetype" ng-model="pd.servicetype" class="form-control" ng-change="filterByServiceType()">
+          <option value="">Service Type</option>
+          <option value="training">Training</option>
+          <option value="walking">Walking</option>
+          <option value="pottytraining">Potty Training</option>
+          <option value="bathing">Bathing</option>
+        </select>
+      </div>
     </div>
     <div class="col-sm-9">
      Listings <br />

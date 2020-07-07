@@ -26,6 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 */
 Route::get('/search', 'SearchController@index')->name('search');
 Route::get('/api/getProviders', 'SearchController@getProviders')->name('get_providers');
+Route::post('/api/filterProviders', 'SearchController@filterProviders')->name('filter_providers');
 
 
 /*
