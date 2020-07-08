@@ -20,9 +20,9 @@
         		<tr ng-repeat="service in services">
         			<td ng-bind="service.service_type"></td>
         			<td><span ng-bind="service.price | currency"></span> <span ng-bind="service.price_per_unit"></span></td>
-        			<td><a href="" class="btn btn-primary">View</a></td>
-        			<td><a href="" class="btn btn-primary">Edit</a></td>
-        			<td><a href="" class="btn btn-primary">Delete</a></td>
+        			<td><a href="/provider/service/view/{{service.id}}" class="btn btn-primary">View</a></td>
+        			<td><a href="/provider/service/edit/{{service.id}}" class="btn btn-primary">Edit</a></td>
+        			<td><a href="" ng-click="deletePetService(service.id)" class="btn btn-primary">Delete</a></td>
         		</tr>
         	</tbody>
         </table>

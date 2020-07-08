@@ -23,6 +23,14 @@ providerApp.config(function($routeProvider, $locationProvider) {
         templateUrl : "templates/provider/add-service.html",
         controller: 'ServicesCtrl'
     })
+    .when("/provider/service/view/:id", {
+        templateUrl : "templates/provider/view-service.html",
+        controller: 'ServicesCtrl'
+    })
+    .when("/provider/service/edit/:id", {
+        templateUrl : "templates/provider/edit-service.html",
+        controller: 'ServicesCtrl'
+    })
     .when("/provider/payments", {
         templateUrl : "templates/provider/payments.html",
         controller: 'ProfileCtrl'
