@@ -11,6 +11,10 @@ searchApp.config(function($routeProvider, $locationProvider) {
         templateUrl : "templates/search/search.html",
         controller: 'SearchCtrl'
     })
+    .when("/provider/view/:Id", {
+        templateUrl : "templates/search/view-provider.html",
+        controller: 'ViewCtrl'
+    })
     .otherwise("/search", {
         templateUrl : "templates/search/search.html"
     });
