@@ -1,0 +1,80 @@
+<div class="container">
+	<hr>
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <h3>Side Bar</h3>
+      </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info" ng-init="getServices()">
+        <div class="alert alert-{{alertClass}} alert-dismissable" ng-if="alertMessage">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+          {{message}}
+        </div>
+        <h3>View Service</h3>
+        
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Pet Type</label>
+            <div class="col-lg-8">
+              <select disabled class="form-control" ng-model="serviceData.pet_type" name="pet_type">
+                <option value="">Pet Type</option>
+                <option value="Dogs">Dogs</option>
+                <option value="Cats">Cats</option>
+                <option value="Birds">Birds</option>
+                <option value="Hamsters">Hamsters</option>
+                <option value="Turtles">Turtles</option>
+                <option value="Guinea Pig">Guinea Pig</option>
+              </select>
+              
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Pet Service</label>
+            <div class="col-lg-8">
+              <input disabled class="form-control" type="text" ng-model="serviceData.service_type" name="service_type">
+            </div>
+          </div> 
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Pet Service Description</label>
+            <div class="col-lg-8">
+              <input disabled class="form-control" type="text" ng-model="serviceData.description" name="description" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Service Price</label>
+            <div class="col-lg-8">
+              <input disabled class="form-control" type="text" ng-model="serviceData.price" name="price" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Price Per Unit</label>
+            <div class="col-lg-8">
+              <input disabled class="form-control" type="text" ng-model="serviceData.price_per_unit" name="price_per_unit" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Service Location</label>
+            <div class="col-lg-8">
+              <input disabled class="form-control" type="text" ng-model="serviceData.service_location" name="service_location" >
+            </div>
+          </div>
+          <!--  <div class="form-group">
+            <input type="checkbox" name="share_service" ng-model="serviceData.share_service" value="1">Able to share service
+            <input type="checkbox" name="share_images" ng-model="serviceData.share_images" value="1">Share images on profile
+          </div>  -->  
+          <div class="form-group">
+             <label>Images</label>
+                <span class="btn file" ng-repeat="files in serviceData.images">
+                  <img src="/uploads/providers/{{files}}" width="100" height="100" />
+                </span>
+          </div>
+          <div class="form-group">
+            <a href="/provider/services" class="btn btn-success">Back</a>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>

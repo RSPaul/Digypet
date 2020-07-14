@@ -44,6 +44,8 @@ Route::get('/provider/profile', 'Provider\ProviderController@dashboard')->name('
 Route::get('/provider/bookings', 'Provider\ProviderController@dashboard')->name('provider_bookings');
 Route::get('/provider/services', 'Provider\ProviderController@dashboard')->name('provider_services');
 Route::get('/provider/service/add', 'Provider\ProviderController@dashboard')->name('provider_add_service');
+Route::get('/provider/service/view/{id}', 'Provider\ProviderController@dashboard')->name('provider_add_service');
+Route::get('/provider/service/edit/{id}', 'Provider\ProviderController@dashboard')->name('provider_add_service');
 Route::get('/provider/payments', 'Provider\ProviderController@dashboard')->name('provider_payments');
 Route::get('/provider/message', 'Provider\ProviderController@dashboard')->name('provider_messages');
 
@@ -52,3 +54,6 @@ Route::get('/provider/message', 'Provider\ProviderController@dashboard')->name('
 */
 Route::get('/api/provider/services', 'Provider\ProviderController@services')->name('provider_add_pet_service');
 Route::post('/api/provider/service/add', 'Provider\ProviderController@addPetService')->name('provider_add_pet_service');
+Route::post('/api/provider/service/update', 'Provider\ProviderController@updatePetService')->name('provider_add_pet_service');
+Route::get('/api/provider/service/{id}', 'Provider\ProviderController@viewPetService')->name('provider_view_pet_service');
+Route::delete('/api/provider/service/delete/{id}', 'Provider\ProviderController@deletePetService')->name('provider_delete_pet_service');
