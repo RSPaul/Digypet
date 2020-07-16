@@ -10,9 +10,9 @@ providerApp.controller('ProfileCtrl', function($scope, $http, $timeout, $locale,
 		.then(function(response) {
 		  $scope.user = response.data;
 	      $scope.user.password =  '';
-	      if(response.data.profile_picture && response.data.profile_picture !='') {
-	      	$scope.user.profile_picture = '/uploads/profiles/' + response.data.profile_picture;
-	      }
+	      // if(response.data.profile_picture && response.data.profile_picture !='') {
+	      // 	$scope.user.profile_picture = '/uploads/providers/' + response.data.profile_picture;
+	      // }
 	      if(!$scope.user.pets) { $scope.user.pets = {} }
 	      if(!$scope.user.service_pricing) { 
 	      	//console.log('Here'); 
@@ -20,7 +20,7 @@ providerApp.controller('ProfileCtrl', function($scope, $http, $timeout, $locale,
 	      }else{
 	      	//$scope.user.service_pricing = response.data.service_pricing;
 	      }
-	      if(!$scope.user.images || !$scope.user.images.length) { $scope.user.images = [] }
+	      if(!$scope.user.profile_picture || !$scope.user.profile_picture.length) { $scope.user.profile_picture = [] }
 	    },function(error){
 	      if(error.data.message == 'Unauthenticated.') { swal("Session Expired", "Your session is expired, please login again to continue.", "error"); $timeout(function() { $('#logout-form').submit(); },3000);} else { swal("Error", error.data.message, "error"); }
 	      $scope.loading = false;
@@ -45,15 +45,15 @@ providerApp.controller('ProfileCtrl', function($scope, $http, $timeout, $locale,
 	};
 
 	$scope.fileNameChanged = function (event) {
-		console.log($scope.user.images);
+		console.log($scope.user.profile_picture);
 		var files = event.target.files;
 		angular.forEach(files, function(value){
 			var reader = new FileReader();
 		    reader.readAsDataURL(value);
 		   	reader.onload = function () {
 		   	 $scope.loading = false;
-		     $scope.user.images.push(reader.result);
-		     console.log($scope.user.images);
+		     $scope.user.profile_picture.push(reader.result);
+		     console.log($scope.user.profile_picture);
 		   	};
 		});
 	}

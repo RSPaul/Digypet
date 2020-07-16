@@ -115,7 +115,7 @@ class ProviderController extends Controller
 
     public function services(Request $request) {
     	if(Auth::check()) {
-    		$services = Services::orderBy('created_at')->get();
+    		$services = Services::where(['user_id' => Auth::user()->id])->orderBy('created_at')->get();
     		return response()->json(array('status' => true, 'services' => $services));
     	}
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Services;
+use DB;
 
 class SearchController extends Controller
 {
@@ -14,14 +16,15 @@ class SearchController extends Controller
     }
 
     public function getProviders(){
+    	//$providers = array();
     	$search = User::where(['type' => 'Provider', 'status' => 1])->get();
-    	foreach ($search as $key => $value) {
-                  # code...
-                  $value->service_pricing    = unserialize($value->service_pricing); 
-                  $value->pets  = unserialize($value->pets);   
-                  $value->images  = unserialize($value->images);   
-                  
-        }    
+        foreach ($search as $key => $value) {
+            # code...
+            $services = Services::where(['user_id' => $value->id])->get();	
+            $value['services']  = $services;
+        }
+
+        //print_r($services);
     	return response()->json($search);
     }
 

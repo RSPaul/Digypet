@@ -5,10 +5,10 @@
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+          <img width="100" src="/uploads/providers/{{user.profile_picture}}" onerror="this.onerror=null;this.src='//placehold.it/100';"  class="avatar img-circle" alt="avatar">
           <h6>Upload a different photo...</h6>
           
-          <input type="file" class="form-control">
+           <input type="file" name="profile_picture" ng-model="user.profile_picture" class="file form-control" ng-upload-change="fileNameChanged($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*">
         </div>
       </div>
       

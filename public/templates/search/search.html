@@ -91,16 +91,20 @@
                   </div>
                   <div class="sideb">
                      <div class="form-group">
-                        <select class="form-control">
-                           <option>Pet Type</option>
+                        <select class="form-control" ng-model="petType" ng-change="filterByPetType()" >
+                            <option value="">Pet Type</option>
+                            <option value="Dogs">Dogs</option>
+                            <option value="Cats">Cats</option>
+                            <option value="Birds">Birds</option>
+                            <option value="Hamsters">Hamsters</option>
+                            <option value="Turtles">Turtles</option>
+                            <option value="Guinea Pig">Guinea Pig</option>
                         </select>
                      </div>
                   </div>
                   <div class="sideb">
                      <div class="form-group">
-                        <select class="form-control">
-                           <option>Service Type</option>
-                        </select>
+                         <input required class="form-control" type="text" ng-change="filterByServiceType()" ng-model="serviceType" name="service_type">
                      </div>
                   </div>
                   <div class="sideb">
@@ -134,13 +138,10 @@
                            <h3 ng-bind="list.first_name"></h3>
                            <div class="serivice-pro">
                               <p class="ser-proname">Services: 
-                                <span ng-if="list.service_pricing.training">Training,</span>
-                                <span ng-if="list.service_pricing.walking"> Walking, </span>
-                                <span ng-if="list.service_pricing.pottytraining">Potty Training,</span>
-                                <span ng-if="list.service_pricing.bathing">Bathing</span>
+                                <span ng-repeat="serv in list.services"> {{serv.service_type}} </span>
                               </p>
                               <div class="divprofiletext">
-                                 <p>ZIP CODE: <span><strong ng-bind="list.zip"></strong></span></p>
+                                 <p>Location: <span><strong ng-bind="list.address"></strong></span></p>
                               </div>
                            </div>
                            <div class="btnprofile">
