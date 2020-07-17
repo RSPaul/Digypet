@@ -18,6 +18,7 @@ searchApp.controller('SearchCtrl', function($scope, $http, $timeout, $locale, $l
 				angular.forEach(value.services, function(value1, key1) {
 					if(value1.pet_type == $scope.petType){
 						$scope.listproviders.push(value);
+						$scope.listproviders = $scope.listproviders.filter(unique);
 					}
 				}) 
 
@@ -29,11 +30,13 @@ searchApp.controller('SearchCtrl', function($scope, $http, $timeout, $locale, $l
 
 	$scope.filterByServiceType = function(){
 			if($scope.serviceType && $scope.serviceType != ''){
+			$scope.serviceType = $scope.serviceType.toLowerCase();
 			$scope.listproviders = [];
 				angular.forEach($scope.filterlistproviders, function(value, key) {
 					angular.forEach(value.services, function(value1, key1) {
-						if((value1.service_type.indexOf($scope.serviceType) >= 0) ){
+						if((value1.service_type.toLowerCase().indexOf($scope.serviceType) >= 0) ){
 							$scope.listproviders.push(value);
+							$scope.listproviders = $scope.listproviders.filter(unique);
 						}
 					}) 
 
@@ -41,6 +44,65 @@ searchApp.controller('SearchCtrl', function($scope, $http, $timeout, $locale, $l
 			}else{
 				$scope.listproviders = $scope.filterlistproviders;
 			}
+	}
+
+	$scope.filterByPriceUnit = function(){
+		var arr = $scope.pricePerUnit.split(",");
+		if(arr[0] && arr[0] != ''){
+			$scope.listproviders = [];
+				angular.forEach($scope.filterlistproviders, function(value, key) {
+					angular.forEach(value.services, function(value1, key1) {
+						if((value1.price >= arr[0] && value1.price <= arr[1]) ){
+							$scope.listproviders.push(value);
+							$scope.listproviders = $scope.listproviders.filter(unique);
+						}
+					}) 
+
+				 }) 	
+		}else{
+				$scope.listproviders = $scope.filterlistproviders;
+		}
+	}
+
+	$scope.filterByTraining = function (){
+		if($scope.Training && $scope.Training != ''){
+		$scope.Training = $scope.Training.toLowerCase();
+			$scope.listproviders = [];
+				angular.forEach($scope.filterlistproviders, function(value, key) {
+					angular.forEach(value.services, function(value1, key1) {
+						if((value1.description.toLowerCase().indexOf($scope.Training) >= 0) ){
+							$scope.listproviders.push(value);
+							$scope.listproviders = $scope.listproviders.filter(unique);
+						}
+					}) 
+
+				 }) 	
+			}else{
+				$scope.listproviders = $scope.filterlistproviders;
+		}
+	}
+
+	const unique = (value, index, self) => {
+	  return self.indexOf(value) === index
+	}
+
+	$scope.filterByServiceDate = function(){
+		if($scope.serviceDate && $scope.serviceDate != ''){
+		$scope.listproviders = [];
+			angular.forEach($scope.filterlistproviders, function(value, key) {
+				angular.forEach(value.services, function(value1, key1) {
+					let current_datetime = new Date(value1.created_at)
+					let formatted_date = current_datetime.getDate() + "/0" + (current_datetime.getMonth() + 1) + "/" + current_datetime.getFullYear();
+					if(formatted_date == $scope.serviceDate){
+						$scope.listproviders.push(value);
+						$scope.listproviders = $scope.listproviders.filter(unique);
+					}
+				}) 
+
+			 }) 	
+		}else{
+			$scope.listproviders = $scope.filterlistproviders;
+		}
 	}
 
 });

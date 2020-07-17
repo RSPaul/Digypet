@@ -85,8 +85,8 @@
                   </div>
                   <div class="sideb">
                      <div class="form-group searchcon">
-                        <input type="text" name="" placeholder="Training" class="form-control">
-                        <input type="submit" name="" value="" class="searchnum">
+                        <input type="text" name="" ng-model="Training" placeholder="Training" ng-change="filterByTraining()" class="form-control">
+                       <!--  <input type="submit" name="" value="" class="searchnum"> -->
                      </div>
                   </div>
                   <div class="sideb">
@@ -104,20 +104,20 @@
                   </div>
                   <div class="sideb">
                      <div class="form-group">
-                         <input required class="form-control" type="text" ng-change="filterByServiceType()" ng-model="serviceType" name="service_type">
+                         <input required class="form-control" type="text" ng-change="filterByServiceType()" ng-model="serviceType" name="service_type" placeholder="Service Type">
                      </div>
                   </div>
                   <div class="sideb">
                      <div class="form-group datepickstyle">
                         <label>Date Service Needed</label>
                         <div class="dateicon"></div>
-                        <input data-date-format="dd/mm/yyyy" id="datepicker">
+                        <input data-date-format="dd/mm/yyyy" ng-model="serviceDate" ng-change="filterByServiceDate()" id="datepicker">
                      </div>
                   </div>
                   <div class="sideb">
                      <label>Rate per night</label>
                      <div class="range-output rateper">
-                        <input class="range-slider" type="text" value="15,85"/>
+                        <input class="range-slider" type="text" ng-model="pricePerUnit" ng-change="filterByPriceUnit()" value="15,85"/>
                      </div>
                   </div>
                </div>
@@ -125,7 +125,7 @@
          </div>
          <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
             <h4><span ng-bind="listproviders.length"></span> Results Found</h4>
-            <div class="vpprofile" ng-repeat="list in listproviders |filter:pd.providername">
+            <div class="vpprofile" ng-repeat="list in listproviders track by $index">
                <div class="row">
                   <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
                      <div class="imgcont-profile">
@@ -170,3 +170,38 @@
       </div>
    </div>
   </section>
+
+  <script type="text/javascript">
+         $('.single-slider').jRange({
+            from: -2.0,
+            to: 2.0,
+            step: 0.5,
+            scale: [-2.0,-1.0,0.0,1.0,2.0],
+            format: '%s ML',
+            width: 220,
+            showLabels: true,
+            snap: true
+         });
+         
+         $('.range-slider').jRange({
+         from: 0,
+         to: 100,
+         //  step: 1,
+         // scale: [0,25,50,75,100],
+         format: '$%s',
+         width: 290,
+         showLabels: true,
+         isRange : false,
+         showScale:false
+         });
+         
+        $('#datepicker').datepicker({
+             weekStart: 1,
+             daysOfWeekHighlighted: "6,0",
+             autoclose: true,
+             todayHighlight: true,
+         });
+         $('#datepicker').datepicker("setDate", new Date());     
+
+         
+      </script>
