@@ -22,12 +22,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('type');
             $table->boolean('status')->default(0);
-            $table->text('address')->nullable();
-            //$table->string('pets')->nullable();
-            //$table->text('service_pricing')->nullable();
-            //$table->text('images')->nullable();
+            $table->text('city')->nullable();
+            $table->string('state')->nullable();
+            $table->text('zip')->nullable();
+            $table->text('location')->nullable();
             $table->string('profile_picture')->nullable();
+            $table->text('images')->nullable();
             $table->text('bio')->nullable();
+            $table->text('video_link')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

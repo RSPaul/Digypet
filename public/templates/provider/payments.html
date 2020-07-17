@@ -1,0 +1,210 @@
+<section class="listview">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-3">
+            <div class="leftpanel">
+               <ul>
+                  <li><a href="#" class="profile"><span></span>Profile</a></li>
+                  <li><a href="#" class="booking"><span></span>Bookings</a></li>
+                  <li><a href="#" class="service"><span></span>Services</a></li>
+                  <li><a href="#" class="payment active"><span></span>Payment</a></li>
+                  <li><a href="#" class="msg"><span></span>Messages</a></li>
+               </ul>
+            </div>
+         </div>
+         <div class="col-lg-9">
+            <div class="rightpanel">
+               <!-- <p class="text-uppercase"><strong>Payment</strong></p> -->
+               <p class="text-uppercase"><strong>Account Details</strong></p>
+               <div class="profileform1 mb-3">
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="name" ng-model="account.name" class="form-control" placeholder="Account name">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="routing_number" ng-model="account.routing_number" class="form-control" placeholder="Routing Number">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="account_number" ng-model="account.account_number" class="form-control" placeholder="Account Number">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="day" ng-model="account.day" class="form-control" placeholder="Day">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="month" ng-model="account.month" class="form-control" placeholder="Month">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="year" ng-model="account.year" class="form-control" placeholder="Year">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="address1" ng-model="account.address1" class="form-control" placeholder="Address Line 1">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="address2" ng-model="account.address2" class="form-control" placeholder="Address Line 1">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="phone" ng-model="account.phone" class="form-control" placeholder="Phone">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="city" ng-model="account.city" class="form-control" placeholder="City">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="state" ng-model="account.state" class="form-control" placeholder="Sate">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="country" ng-model="account.country" class="form-control" placeholder="Country">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="zip" ng-model="account.zip" class="form-control" placeholder="Zip">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <select name="mcc" ng-model="bank.mcc" class="form-control" required="">
+                              <option value="" selected="selected">Select</option>
+                              <option value="1520">General Contractors-Residential and Commercial</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="url" ng-model="account.url" class="form-control" placeholder="Website">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="id_number" ng-model="account.id_number" class="form-control" placeholder="SSN">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="text" name="ssn_last_4" ng-model="account.ssn_last_4" class="form-control" placeholder="SSN LAST 4">
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="file" name="front_pic" class="form-control" required="" ng-upload-change="fileNameChanged($event, 'front')" value="PHOTO ID - FRONT">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <input type="file" name="back_pic" class="form-control" required="" ng-upload-change="fileNameChanged($event, 'back')" value="PHOTO ID - Back">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-6">
+                        <div class="form-group">
+                           <input type="submit" name="" class="btn btn-primary btn-block" value="Add card">
+                        </div>
+                     </div>
+                     <div class="col-lg-12">
+                        <p class="text-uppercase mb-2"><strong>Paypal</strong></p>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-6">
+                        <div class="form-group ">
+                           <input type="text" name="" class="form-control" placeholder="Email"> 
+                        </div>
+                     </div>
+                     <div class="col-lg-6">
+                        <div class="form-group ">
+                           <input type="submit" name="" class="btn btn-primary btn-block" value="Connect to paypal">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <p class="text-uppercase mb-2"><strong>Payment list</strong></p>
+               <div class="servicelive payment">
+                  <table cellpadding="10" cellspacing="10" class="tableservice">
+                     <thead>
+                        <tr>
+                           <th>Date</th>
+                           <th>Service(s)</th>
+                           <th>Status</th>
+                           <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td data-label="Date">07/08/20</td>
+                           <td data-label="Service(s)">Dog Training, Dog Walking</td>
+                           <td data-label="Status"><a href="">Completed</a></td>
+                           <td data-label="Action"><a href="">Paid</a></td>
+                        </tr>
+                        <tr>
+                           <td data-label="Date">07/08/20</td>
+                           <td data-label="Service(s)">Dog Training, Dog Walking</td>
+                           <td data-label="Status"><a href="">Pending</a></td>
+                           <td data-label="Action"><a href="">Invoiced</a></td>
+                        </tr>
+                        <tr>
+                           <td data-label="Date">07/08/20</td>
+                           <td data-label="Service(s)">Dog Training, Dog Walking</td>
+                           <td data-label="Status"><a href="">Completed</a></td>
+                           <td data-label="Action"><a href="">Paid</a></td>
+                        </tr>
+                        <tr>
+                           <td data-label="Date">07/08/20</td>
+                           <td data-label="Service(s)">Dog Training, Dog Walking</td>
+                           <td data-label="Status"><a href="">Completed</a></td>
+                           <td data-label="Action"><a href="">Paid</a></td>
+                        </tr>
+                        <tr>
+                           <td data-label="Date">07/08/20</td>
+                           <td data-label="Service(s)">Dog Training, Dog Walking</td>
+                           <td data-label="Status"><a href="">Completed</a></td>
+                           <td data-label="Action"><a href="">Paid</a></td>
+                        </tr>
+                        <tr>
+                           <td data-label="Date">07/08/20</td>
+                           <td data-label="Service(s)">Dog Training, Dog Walking</td>
+                           <td data-label="Status"><a href="">Completed</a></td>
+                           <td data-label="Action"><a href="">Paid</a></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>

@@ -6,8 +6,7 @@
       <!-- CSRF Token -->
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>{{ config('app.name', 'Laravel') }}</title>
-      <!-- Scripts -->
-      <script src="{{ asset('js/app.js') }}" defer></script>
+      
       <!-- Fonts -->
       <link rel="dns-prefetch" href="//fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -41,10 +40,10 @@
                   </li>
                   @guest
                   <li class="nav-item px-lg-2">
-                     <a class="nav-link text-uppercase text-expanded btn btn-secondary signbtn" href="#">Sign up</a>
+                     <a class="nav-link text-uppercase text-expanded btn btn-secondary signbtn" href="/register">Sign up</a>
                   </li>
                   <li class="nav-item px-lg-2">
-                     <a class="nav-link text-uppercase text-expanded btn btn-primary loginbtn" href="#">Login</a>
+                     <a class="nav-link text-uppercase text-expanded btn btn-primary loginbtn" href="/login">Login</a>
                   </li>
                   @else
                   <li class="nav-item dropdown">

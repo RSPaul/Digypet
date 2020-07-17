@@ -1,89 +1,114 @@
-<div class="container">
-	<hr>
+<section class="listview">
+ <div class="container">
     <div class="row">
-      <!-- left column -->
-      <div class="col-md-3">
-        <h3>Side Bar</h3>
-      </div>
-      
-      <!-- edit form column -->
-      <div class="col-md-9 personal-info" ng-init="services()">
-        <div class="alert alert-{{alertClass}} alert-dismissable" ng-if="alertMessage">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          <i class="fa fa-coffee"></i>
-          {{message}}
-        </div>
-        <h3>New Pet Service</h3>
-        
-        <form class="form-horizontal" novalidate autocomplete="off" role="form" name="serviceForm" ng-submit="savePetService()">
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Pet Type</label>
-            <div class="col-lg-8">
-              <select required class="form-control" ng-model="service.pet_type" name="pet_type">
-                <option value="">Pet Type</option>
-                <option value="Dogs">Dogs</option>
-                <option value="Cats">Cats</option>
-                <option value="Birds">Birds</option>
-                <option value="Hamsters">Hamsters</option>
-                <option value="Turtles">Turtles</option>
-                <option value="Guinea Pig">Guinea Pig</option>
-              </select>
-              <span class="required" ng-show="serviceForm.pet_type.$error.required">Pet type is required.</span>
-            </div>
+       <div class="col-lg-3">
+          <div class="leftpanel">
+             <ul>
+                <li><a href="/provider/profile" class="profile" ng-class='profileActive ? "active" : "" '><span></span> Profile</a></li>
+                <li><a href="/provider/bookings" class="booking" ng-class='bookingActive ? "active" : "" '><span></span>Bookings</a></li>
+                <li><a href="/provider/services" class="service" ng-class='serviceActive ? "active" : "" '><span></span>Services</a></li>
+                <li><a href="/provider/payments" class="payment" ng-class='paymentActive ? "active" : "" '><span></span>Payment</a></li>
+                <li><a href="/provider/messages" class="msg" ng-class='messageActive ? "active" : "" '><span></span>Messages</a></li>
+             </ul>
           </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Pet Service</label>
-            <div class="col-lg-8">
-              <input required class="form-control" type="text" ng-model="service.service_type" name="service_type">
-              <span class="required" ng-show="serviceForm.service_type.$error.required">Pet Service is required.</span>
-            </div>
-          </div> 
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Pet Service Description</label>
-            <div class="col-lg-8">
-              <input required class="form-control" type="text" ng-model="service.description" name="description" >
-              <span class="required" ng-show="serviceForm.description.$error.required">Service Description is required.</span>
-            </div>
+       </div>
+       <div class="col-lg-9">
+          <div class="rightpanel">
+             <p class="text-uppercase"><strong>New pet service:</strong></p>
+             <div class="profileform fullform mb-0">
+                <form class="form-horizontal" novalidate autocomplete="off" role="form" name="serviceForm" ng-submit="savePetService()">
+                  <div class="row">
+                     <div class="col-lg-8">
+                        <div class="form-group">
+                            <select class="form-control" ng-model="service.pet_type" name="pat_type" required ng-change="changePetIcon(service.pet_type)">
+                              <option value="">Pet Type</option>
+                              <option value="Dogs">Dogs</option>
+                              <option value="Cats">Cats</option>
+                              <option value="Birds">Birds</option>
+                              <option value="Hamsters">Hamsters</option>
+                              <option value="Turtles">Turtles</option>
+                              <option value="Guinea Pig">Guinea Pig</option>
+                          </select>
+                          <span class="required" ng-show="serviceForm.pet_type.$error.required">Pet type is required.</span>
+                        </div>
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Dog training" ng-model="service.service_type" name="service_type" required>
+                          <span class="required" ng-show="serviceForm.service_type.$error.required">Pet Service is required.</span>
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="dogiconp">
+                           Pet icon <a href="javascript:void(0)"  class="{{service.pet_icon}}">
+                            <span class=""></span>Dog</a>   
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <div class="form-group">
+                          <input type="text" placeholder="Pet service description" class="form-control" ng-model="service.description" name="description" required>
+                          <span class="required" ng-show="serviceForm.description.$error.required">Service Description is required.</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-6">
+                        <div class="form-group">
+                          <input type="text" placeholder="Pet service price" class="form-control" ng-model="service.price" name="price" required>
+                          <span class="required" ng-show="serviceForm.price.$error.required">Service Price is required.</span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <input type="text" placeholder="Price per unit" class="form-control" ng-model="service.price_per_unit" name="price_per_unit" required>
+                          <span class="required" ng-show="serviceForm.price_per_unit.$error.required">Price per unit is required.</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-8">
+                        <div class="form-group">
+                          <input type="text" placeholder="Service location available" class="form-control" ng-model="service.service_location" name="service_location" required>
+                          <span class="required" ng-show="serviceForm.service_location.$error.required">Service Location is required.</span>
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="form-group">
+                           <button class="btn btn-secondary btn-block " type="button">Add new location</button>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <p class="text-uppercase"><strong>Service images:</strong></p>
+                     </div>
+                     <div class="col-lg-12">
+                        <div class="form-group">
+                           <div class="addfile">
+                              <input type="file" ng-model="service.images" ng-upload-change="fileNameChanged($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" multiple class="add">
+                           </div>
+                            <span class="user-images" ng-if="!service.id">
+                            </span>
+                            <span class="user-images" ng-if="service.id">
+                              <img src="/uploads/providers/{{image}}" ng-repeat="image in service.images">
+                            </span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-8 d-flex justify-content-between flex-wrap">
+                        <div class="form-group half">
+                           <input type="submit" name="submit" class="btn-block btn-primary btn" value="{{btnText}}"  ng-disabled="serviceForm.$invalid">
+                         </div>
+                         <div class="form-group half">
+                           <input type="button" name="submit" class="btn-block btn-secondary btn" value="Cancel"  onclick="return  window.history.back();">
+                        </div>
+                     </div>
+                  </div>
+                </form>
+             </div>
           </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Service Price</label>
-            <div class="col-lg-8">
-              <input required class="form-control" type="text" ng-model="service.price" name="price" >
-              <span class="required" ng-show="serviceForm.price.$error.required">Service Price is required.</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Price Per Unit</label>
-            <div class="col-lg-8">
-              <input required class="form-control" type="text" ng-model="service.price_per_unit" name="price_per_unit" >
-              <span class="required" ng-show="serviceForm.price_per_unit.$error.required">Price per unit is required.</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Service Location</label>
-            <div class="col-lg-8">
-              <input required class="form-control" type="text" ng-model="service.service_location" name="service_location" >
-              <span class="required" ng-show="serviceForm.service_location.$error.required">Service Location is required.</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <input type="checkbox" name="share_service" ng-model="service.share_service" value="1">Able to share service
-            <input type="checkbox" name="share_images" ng-model="service.share_images" value="1">Share images on profile
-          </div>   
-          <div class="form-group">
-             <label>Upload Files</label>
-                <span class="btn file">
-                <input type="file" name="images" ng-model="service.images" class="file form-control" ng-upload-change="fileNameChanged($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" multiple></span>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label"></label>
-            <div class="col-md-8">
-              <input type="submit" class="btn btn-primary" value="{{btnText}}"  ng-disabled="serviceForm.$invalid">
-              <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
-            </div>
-          </div>
-        </form>
-      </div>
-  </div>
-</div>
+       </div>
+    </div>
+ </div>
+</section>

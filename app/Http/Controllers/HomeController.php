@@ -48,32 +48,72 @@ class HomeController extends Controller
         if (Auth::check()):
             if($request->isMethod('post')) {
                 $data = $request->all();
-                $input = $request->only('first_name', 'last_name', 'email', 'type', 'status', 'address', 'profile_picture', 'bio');
+                $input = $request->only('first_name', 'last_name', 'email', 'type', 'status', 'city', 'state', 'zip', 'location', 'profile_picture', 'images', 'bio', 'video_link');
 
-                //upload image
-                if(isset($input['profile_picture']) && is_array($input['profile_picture'])) {
-                    $files = $data['profile_picture'][0];
-                    list($type, $files) = explode(';', $files);
-                    list(, $files)      = explode(',', $files);
-                    $file_date = base64_decode($files);
-                    $file_type = explode("/", $type);
-                            //print_r($file_type);die();
-                    $file_name = time().'.' . $file_type[1];
-                    $path = public_path() . "/uploads/providers/" . $file_name;
-                    file_put_contents($path, $file_date);
+                //upload profile image
+                if(isset($input['profile_picture'])) {
+                    if(strpos($data['profile_picture'], "data:") !== false) {
+                        $files = $data['profile_picture'];
+                        list($type, $files) = explode(';', $files);
+                        list(, $files)      = explode(',', $files);
+                        $file_date = base64_decode($files);
+                        $file_type = explode("/", $type);
+                                //print_r($file_type);die();
+                        $file_name = time().'.' . $file_type[1];
+                        $path = public_path() . "/uploads/providers/" . $file_name;
+                        file_put_contents($path, $file_date);
 
-                    $input['profile_picture'] = $file_name;
+                        $input['profile_picture'] = $file_name;
+                    }
                 }   
+                //upload other images
+                if(isset($input['images']) && is_array($input['images'])) {
+                    $images_array = array();
+                    $counter = 1;
+                    foreach($input['images'] as $image) {
+                        if(strpos($image, "data:") !== false) {
+                            $files = $image;
+                            list($type, $files) = explode(';', $files);
+                            list(, $files)      = explode(',', $files);
+                            $file_date = base64_decode($files);
+                            $file_type = explode("/", $type);
+                                    //print_r($file_type);die();
+                            $file_name = $counter . time().'.' . $file_type[1];
+                            $path = public_path() . "/uploads/providers/" . $file_name;
+                            file_put_contents($path, $file_date);
+                            array_push($images_array, $file_name);
+                        } else {
+                            array_push($images_array, $image);
+                        }
+                        $counter++;
+                    }
+                }
+
+                $input['images'] = serialize($images_array);
                 User::where(['id' => Auth::user()->id])
                         ->update($input);  
+                $response = array(
+                        'status'  => true,
+                        'message'  => 'Profile updated.'
+                    );
+                return response()->json($response);
+            }
+        endif;
 
-                if($data['password'] != '') {
-                    if($data['password'] == $data['confirm_password']) {
-                        User::where(['id' => $profile->id])
-                                ->update(['password' => Hash::make($data['password'])]);
+    }
+
+    public function updatePassword(Request $request) {
+        if (Auth::check()){
+            if($request->isMethod('post')) {
+                $data = $request->all();
+                $input = $request->only('password', 'confirm_password');
+                if($input['password'] != '') {
+                    if($input['password'] == $input['confirm_password']) {
+                        User::where(['id' => Auth::user()->id])
+                                ->update(['password' => Hash::make($input['password'])]);
                         $response = array(
                             'status'  => true,
-                            'message'  => 'Profile updated.'
+                            'message'  => 'Profile has been changed.'
                         );
                     } else {
                         $response = array(
@@ -83,13 +123,13 @@ class HomeController extends Controller
                     }
                 } else {
                     $response = array(
-                        'status'  => true,
-                        'message'  => 'Profile updated.'
+                        'status'  => false,
+                        'message'  => 'Password is required.'
                     );
-                }            
+                }
+
                 return response()->json($response);
             }
-        endif;
-
+        }
     }
 }

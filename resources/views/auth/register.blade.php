@@ -78,7 +78,7 @@
                      <input type="hidden" name="type" value="Provider">
                   </div>
                   <div class="form-group">
-                     <p>Have an account? <a href="#">Log in</a></p>
+                     <p>Have an account? <a href="/login">Log in</a></p>
                   </div>
                </div>
             </form>

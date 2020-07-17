@@ -1,111 +1,139 @@
-<div class="container">
-    <h1>Edit Profile</h1>
-  	<hr>
-	<div class="row">
-      <!-- left column -->
-      <div class="col-md-3">
-        <div class="text-center">
-          <img width="100" src="/uploads/providers/{{user.profile_picture}}" onerror="this.onerror=null;this.src='//placehold.it/100';"  class="avatar img-circle" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          
-           <input type="file" name="profile_picture" ng-model="user.profile_picture" class="file form-control" ng-upload-change="fileNameChanged($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*">
-        </div>
+<section class="listview">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-3" >
+          <div class="leftpanel">
+           <ul>
+              <li><a href="/provider/profile" class="profile" ng-class='profileActive ? "active" : "" '><span></span> Profile</a></li>
+              <li><a href="/provider/bookings" class="booking" ng-class='bookingActive ? "active" : "" '><span></span>Bookings</a></li>
+              <li><a href="/provider/services" class="service" ng-class='serviceActive ? "active" : "" '><span></span>Services</a></li>
+              <li><a href="/provider/payments" class="payment" ng-class='paymentActive ? "active" : "" '><span></span>Payment</a></li>
+              <li><a href="/provider/messages" class="msg" ng-class='messageActive ? "active" : "" '><span></span>Messages</a></li>
+           </ul>
+          </div>           
+         </div>
+         <div class="col-lg-9" ng-init="me()">
+            <div class="rightpanel">
+               <div class="profile-temp">
+                  <div class="fullservices">
+                     <a href="#" class="closebtn"></a>
+                     <img src="/uploads/providers/{{user.profile_picture}}" id="userImage" onerror="this.onerror=null;this.src='//placehold.it/180';">
+                  </div>
+                  <div class="profilebtn">
+                     <a href="javascript:void(0);" ng-click="updateProfile()" class="btn btn-secondary">Upload Image</a>
+                     <div class="fileupload">
+                        <input type="file" name="profile_picture"  ng-upload-change="fileNameChanged($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" class="btn btn-primary">
+                     </div>
+                     <div class="form-group videolink">
+                        <input type="text" name="user_video" ng-model="user.video_link" class="nomy" placeholder="Video link" autocomplete="off">
+                        <button class="file-video-button" ng-click="updateProfile()" ng-disabled="!user.video_link">Add a video</button>
+                     </div>
+                  </div>
+               </div>
+               <p class="text-uppercase"><strong>Profile</strong></p>
+                  <div class="profileform">
+                    <form class="form-horizontal" novalidate autocomplete="off" role="form" name="profileForm" ng-submit="updateProfile()">
+                     <div class="row">
+                        <div class="col-lg-6">
+                           <div class="form-group">
+                              <input ng-model="user.first_name" name="first_name" class="form-control" placeholder="First Name" autocomplete="off">
+                              <span class="required" ng-show="profileForm.first_name.$error.required">First name is required.</span>                           
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-group">
+                              <input type="text" name="last_name" ng-model="user.last_name" class="form-control" placeholder="Last name" required autocomplete="off">       
+                              <span class="required" ng-show="profileForm.last_name.$error.required">Last name is required.</span>           
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <div class="form-group">
+                              <input type="email" name="email" ng-model="user.email" class="form-control" placeholder="Email" required readonly autocomplete="off">
+                              <span class="required" ng-show="profileForm.email.$error.required">Email is required.</span>  
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <div class="form-group">
+                              <input type="text" name="city" ng-model="user.city" class="form-control" placeholder="City" required autocomplete="off"> 
+                              <span class="required" ng-show="profileForm.city.$error.required">City name is required.</span>  
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
+                           <div class="form-group">
+                              <select class="form-control" name="state" ng-model="user.state" required>
+                                 <option value="">State</option>
+                                 <option value="PB">PB</option>
+                              </select>
+                              <span class="required" ng-show="profileForm.state.$error.required">State name is required.</span>
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
+                           <div class="form-group">
+                              <input type="text" name="zip" ng-model="user.zip" class="form-control" placeholder="Zip code" required>
+                              <span class="required" ng-show="profileForm.zip.$error.required">Zip code is required.</span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <div class="form-group">
+                              <textarea class="form-control" name="bio" ng-model="user.bio" rows="5" cols="1" placeholder="Bio">
+                              </textarea>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <div class="form-group">
+                              <div class="addfile">
+                                 <input type="file" name="images" ng-upload-change="uploadUserImages($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" class="btn btn-primary" class="add" multiple="true">
+                              </div>
+                              <span class="user-images" ng-repeat="image in user.images">
+                                <img src="/uploads/providers/{{image}}">
+                              </span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-6">
+                           <div class="form-group">
+                              <button class="btn btn-primary" type="submit">Update profile</button>
+                           </div>
+                        </div>
+                     </div>
+                    </form>
+
+                    <form class="form-horizontal" novalidate autocomplete="off" role="form" name="passwordForm" ng-submit="updatePassword()">
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <p class="text-uppercase mb-2"><strong>PASSWORD</strong></p>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-group">
+                              <input type="password" name="password" ng-model="user.password" class="form-control" placeholder="New password">
+                           </div>
+                        </div>
+                        <div class="col-lg-6">
+                           <div class="form-group">
+                              <input type="password" name="confirm_password" ng-model="user.confirm_password" class="form-control" placeholder="Confirm password">
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <div class="form-group">
+                              <input type="submit" name="" class="btn btn-primary" value="Update password">
+                           </div>
+                        </div>
+                     </div>
+                    </form> 
+                  </div>               
+            </div>
+         </div>
       </div>
-      
-      <!-- edit form column -->
-      <div class="col-md-9 personal-info" ng-init="me()">
-        <div class="alert alert-{{alertClass}} alert-dismissable" ng-if="alertMessage">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          <i class="fa fa-coffee"></i>
-          This is an <strong>.alert</strong>. Use this to show important messages to the user.
-        </div>
-        <h3>Personal info</h3>
-        
-        <form class="form-horizontal" novalidate autocomplete="off" role="form" name="profileForm" ng-submit="updateProfile()">
-          <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
-            <div class="col-lg-8">
-              <input required class="form-control" type="text" ng-model="user.first_name" name="first_name" >
-              <span class="required" ng-show="profileForm.first_name.$error.required">First name is required.</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
-            <div class="col-lg-8">
-              <input required class="form-control" type="text" ng-model="user.last_name" name="last_name" >
-              <span class="required" ng-show="profileForm.last_name.$error.required">Last name is required.</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Email:</label>
-            <div class="col-lg-8">
-              <input required class="form-control" type="text" ng-model="user.email" name="email" readonly>
-              <span class="required" ng-show="profileForm.email.$error.required">Email is required.</span>
-            </div>
-          </div>  
-          <!-- <div class="form-group">
-            <label class="col-lg-3 control-label">Pets:</label>
-            <div class="col-lg-8">
-              <input class="" type="checkbox" value="Dogs" ng-model="user.pets.dogs" name="pets"> Dogs 
-              <input class="" type="checkbox" value="Cats" ng-model="user.pets.cats" name="pets"> Cats 
-              <input class="" type="checkbox" value="Birds" ng-model="user.pets.birds" name="pets"> Birds 
-              <input class="" type="checkbox" value="Hamsters" ng-model="user.pets.hamsters" name="pets"> Hamsters 
-              <input class="" type="checkbox" value="Turtles" ng-model="user.pets.turtles" name="pets"> Turtles 
-              <input class="" type="checkbox" value="Guinea Pig" ng-model="user.pets.guinea" name="pets"> Guinea Pig 
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Services:</label>
-            <div class="col-lg-8">
-              <input class="" type="checkbox" value="Training" ng-model="user.service_pricing.training" name="services"> Training  <input class="form-control" placeholder="Price" type="text" ng-if="user.service_pricing.training" ng-model="user.service_pricing.trainingprice" name="trainingprice">
-
-              <input class="" type="checkbox" value="Walking" ng-model="user.service_pricing.walking" name="services"> Walking  <input class="form-control" placeholder="Price" type="text" ng-if="user.service_pricing.walking" ng-model="user.service_pricing.walkingprice" name="walkingprice">
-
-              <input class="" type="checkbox" value="Potty Training" ng-model="user.service_pricing.pottytraining" name="services"> Potty Training  <input class="form-control" placeholder="Price" type="text" ng-if="user.service_pricing.pottytraining" ng-model="user.service_pricing.pottytrainingprice" name="pottytrainingprice">
-
-              <input class="" type="checkbox" value="Bathing" ng-model="user.service_pricing.bathing" name="services"> Bathing  <input class="form-control" placeholder="Price" type="text" ng-if="user.service_pricing.bathing" ng-model="user.service_pricing.bathingprice" name="bathingprice">
-
-            </div>
-          </div>
-          <div class="form-group">
-             <label>Upload Files</label>
-                <span class="btn file">
-                <input type="file" name="images" ng-model="user.images" class="file form-control" ng-upload-change="fileNameChanged($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain, application/pdf, image/*" multiple></span>
-          </div> -->
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Address:</label>
-            <div class="col-lg-8">
-              <textarea class="form-control" type="text" ng-model="user.address" name="address" ></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Bio:</label>
-            <div class="col-lg-8">
-              <textarea class="form-control" type="text" ng-model="user.bio" name="bio" ></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Password:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="password" name="password" ng-model="user.password" >
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Confirm password:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="password" ng-model="user.confirm_password" name="confirm_password" >
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label"></label>
-            <div class="col-md-8">
-              <input type="submit" class="btn btn-primary" value="Update Profile"  ng-disabled="profileForm.$invalid">
-              <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
-            </div>
-          </div>
-        </form>
-      </div>
-  </div>
-</div>
-<hr>
+   </div>
+</section>

@@ -3,24 +3,19 @@ providerApp.controller('ProfileCtrl', function($scope, $http, $timeout, $locale,
 	$scope.user = {password: '', confirm_password: '',pets: {},service_pricing: {}, images: [], profile_picture: '/uploads/profiles/l60Hf.png'};
 	$scope.alertClass = 'success';
 	$scope.alertMessage = '';
-
+	$scope.profileActive = true;
 
 	$scope.me = function() {
 		$http.get('/api/me')
 		.then(function(response) {
 		  $scope.user = response.data;
 	      $scope.user.password =  '';
-	      // if(response.data.profile_picture && response.data.profile_picture !='') {
-	      // 	$scope.user.profile_picture = '/uploads/providers/' + response.data.profile_picture;
-	      // }
-	      if(!$scope.user.pets) { $scope.user.pets = {} }
-	      if(!$scope.user.service_pricing) { 
-	      	//console.log('Here'); 
-	      	$scope.user.service_pricing = {};
-	      }else{
-	      	//$scope.user.service_pricing = response.data.service_pricing;
+	      if(!$scope.user.profile_picture || $scope.user.profile_picture == '') { 
+	      	$scope.user.profile_picture = ''; 
 	      }
-	      if(!$scope.user.profile_picture || !$scope.user.profile_picture.length) { $scope.user.profile_picture = [] }
+	      if(!$scope.user.images || !$scope.user.images.length) { 
+	      	$scope.user.images = []; 
+	      }
 	    },function(error){
 	      if(error.data.message == 'Unauthenticated.') { swal("Session Expired", "Your session is expired, please login again to continue.", "error"); $timeout(function() { $('#logout-form').submit(); },3000);} else { swal("Error", error.data.message, "error"); }
 	      $scope.loading = false;
@@ -45,15 +40,30 @@ providerApp.controller('ProfileCtrl', function($scope, $http, $timeout, $locale,
 	};
 
 	$scope.fileNameChanged = function (event) {
-		console.log($scope.user.profile_picture);
+		//console.log($scope.user.profile_picture);
 		var files = event.target.files;
 		angular.forEach(files, function(value){
 			var reader = new FileReader();
 		    reader.readAsDataURL(value);
 		   	reader.onload = function () {
 		   	 $scope.loading = false;
-		     $scope.user.profile_picture.push(reader.result);
-		     console.log($scope.user.profile_picture);
+		    // $scope.user.profile_picture.push(reader.result);
+		    $scope.user.profile_picture = reader.result;
+		     $('#userImage').attr('src', reader.result);
+		   	};
+		});
+	}
+
+	$scope.uploadUserImages = function (event) {
+		//console.log($scope.user.images);
+		var files = event.target.files;
+		angular.forEach(files, function(value){
+			var reader = new FileReader();
+		    reader.readAsDataURL(value);
+		   	reader.onload = function () {
+		   	 $scope.loading = false;
+		     $scope.user.images.push(reader.result);		     
+		     //c//onsole.log($scope.user.images);
 		   	};
 		});
 	}
@@ -75,9 +85,9 @@ providerApp.controller('ProfileCtrl', function($scope, $http, $timeout, $locale,
 		});
 	}
 
-	$scope.changePassword = function() {
+	$scope.updatePassword = function() {
 		$scope.loading = true;
-		$http.post('/teacher/api/passowrd/change', $scope.user)
+		$http.post('/api/passowrd/change', $scope.user)
 		.then(function (response) {
 			$scope.loading = false;
 		  	var response = response.data;

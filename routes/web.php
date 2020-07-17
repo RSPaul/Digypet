@@ -35,6 +35,7 @@ Route::post('/api/filterProviders', 'SearchController@filterProviders')->name('f
 */
 Route::get('/api/me', 'HomeController@authUser')->name('auth_user');
 Route::post('/api/profile', 'HomeController@updateProfile')->name('update_auth_user');
+Route::post('/api/passowrd/change', 'HomeController@updatePassword')->name('update_auth_user_password');
 
 /*
 * Provider Routes
@@ -47,7 +48,7 @@ Route::get('/provider/service/add', 'Provider\ProviderController@dashboard')->na
 Route::get('/provider/service/view/{id}', 'Provider\ProviderController@dashboard')->name('provider_add_service');
 Route::get('/provider/service/edit/{id}', 'Provider\ProviderController@dashboard')->name('provider_add_service');
 Route::get('/provider/payments', 'Provider\ProviderController@dashboard')->name('provider_payments');
-Route::get('/provider/message', 'Provider\ProviderController@dashboard')->name('provider_messages');
+Route::get('/provider/messages', 'Provider\ProviderController@dashboard')->name('provider_messages');
 
 /*
 * Provider API Routes

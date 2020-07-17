@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>digypet</title>
+      <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+      <!-- Bootstrap core CSS -->
+      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom fonts for this template -->
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="css/style-digy.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/jquery.range.css">
+   </head>
+   <body>
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+         <div class="container">
+            <a class="navbar-brand" href="#"><img src="img/logo-main.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <a class="navbar-logo" href="#"><img src="img/logo-main.png"></a>
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active px-lg-4">
+                     <a class="nav-link text-uppercase text-expanded" href="#">Become a Service Provider
+                     <span class="sr-only">(current)</span>
+                     </a>
+                  </li>
+                  <li class="nav-item px-lg-4">
+                     <a class="nav-link text-uppercase text-expanded" href="#">Our Services</a>
+                  </li>
+                  <li class="nav-item px-lg-2">
+                     <a class="nav-link text-uppercase text-expanded btn btn-secondary signbtn" href="#">Sign up</a>
+                  </li>
+                  <li class="nav-item px-lg-2">
+                     <a class="nav-link text-uppercase text-expanded btn btn-primary loginbtn" href="#">Login</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <section class="listview">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                  <div class="isidebar">
+                     <div class="rangbar">
+                        <div class="boxside">
+                           <h3>Location</h3>
+                           <div class="numberside">
+                              <span class="num">58935</span>
+                              <span class="changeloc">Change location > <a href="" class="locationicon"></a> </span>
+                           </div>
+                           <h3>Distance</h3>
+                           <div class="range-output">
+                              <span class="locationrange"></span>  
+                              <input class="single-slider" type="text" value="0.50"/>
+                              <span class="logosicon"></span>
+                           </div>
+                        </div>
+                        <div class="sideb">
+                           <div class="form-group searchcon">
+                              <input type="text" name="" placeholder="Training" class="form-control">
+                              <input type="submit" name="" value="" class="searchnum">
+                           </div>
+                        </div>
+                        <div class="sideb">
+                           <div class="form-group">
+                              <select class="form-control">
+                                 <option>Pet Type</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="sideb">
+                           <div class="form-group">
+                              <select class="form-control">
+                                 <option>Service Type</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="sideb">
+                           <div class="form-group datepickstyle">
+                              <label>Date Service Needed</label>
+                              <div class="dateicon"></div>
+                              <input data-date-format="dd/mm/yyyy" id="datepicker">
+                           </div>
+                        </div>
+                        <div class="sideb">
+                           <label>Rate per night</label>
+                           <div class="range-output rateper">
+                              <input class="range-slider" type="text" value="15,85"/>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                  <h4>6 Results Found</h4>
+                  <div class="vpprofile">
+                     <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                           <div class="imgcont-profile">
+                              <img src="img/profile-img01.png">
+                           </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                           <div class="listprofile">
+                              <div class="profiledata">
+                                 <h3>Nancy</h3>
+                                 <div class="serivice-pro">
+                                    <p class="ser-proname">Services: <span>Training</span></p>
+                                    <div class="divprofiletext">
+                                       <!-- <p>Pricing: <span><strong>$20 per night</strong></span></p> -->
+                                       <p>ZIP CODE: <span><strong>58935</strong></span></p>
+                                    </div>
+                                 </div>
+                                 <div class="btnprofile">
+                                    <a href="#" class="btn small btn-primary">View profile</a>
+                                    <a href="#" class="btn small btn-secondary">Book</a>
+                                    <a href="#" class="btn small heartbtn fill"><span></span></a>
+                                 </div>
+                              </div>
+                              <div class="r-profile">
+                                 <p class="bluetext text-center"><strong>(36)</strong></p>
+                                 <div class="comment-pro">
+                                    <div class="img-prosec">
+                                       <img src="img/small-profile-img02.png">
+                                    </div>
+                                    <div class="imgtext-pro">
+                                       <p><em> “Nancy treated my dog like it was her own. I would for sure recommend her!” </em></p>
+                                       <p><em>- Joe M. </em> - Dog Lover</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="vpprofile">
+                     <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                           <div class="imgcont-profile">
+                              <img src="img/profile-img02.png">
+                           </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                           <div class="listprofile">
+                              <div class="profiledata">
+                                 <h3>Jimmy</h3>
+                                 <div class="serivice-pro">
+                                    <p class="ser-proname">Services: <span>Training</span></p>
+                                    <div class="divprofiletext">                                       
+                                       <p>ZIP CODE: <span><strong>58935</strong></span></p>
+                                    </div>
+                                 </div>
+                                 <div class="btnprofile">
+                                    <a href="#" class="btn small btn-primary">View profile</a>
+                                    <a href="#" class="btn small btn-secondary">Book</a>
+                                    <a href="#" class="btn small heartbtn"><span></span></a>
+                                 </div>
+                              </div>
+                              <div class="r-profile">
+                                 <p class="bluetext text-center"><strong>(21)</strong></p>
+                                 <div class="comment-pro">
+                                    <div class="img-prosec">
+                                       <img src="img/small-profile-img01.png">
+                                    </div>
+                                    <div class="imgtext-pro">
+                                       <p><em>“She was the best priced with quality services.”</em></p>
+                                       <p><em>- Janet K. </em>- Wag O Lishous</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="vpprofile">
+                     <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                           <div class="imgcont-profile">
+                              <img src="img/profile-img03.png">
+                           </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                           <div class="listprofile">
+                              <div class="profiledata">
+                                 <h3>Gina</h3>
+                                 <div class="serivice-pro">
+                                    <p class="ser-proname">Services: <span>Training</span></p>
+                                    <div class="divprofiletext">                                       
+                                       <p>ZIP CODE: <span><strong>58935</strong></span></p>
+                                    </div>
+                                 </div>
+                                 <div class="btnprofile">
+                                    <a href="#" class="btn small btn-primary">View profile</a>
+                                    <a href="#" class="btn small btn-secondary">Book</a>
+                                    <a href="#" class="btn small heartbtn fill"><span></span></a>
+                                 </div>
+                              </div>
+                              <div class="r-profile">
+                                 <p class="bluetext text-center"><strong>(36)</strong></p>
+                                 <div class="comment-pro">
+                                    <div class="img-prosec">
+                                       <img src="img/small-profile-img02.png">
+                                    </div>
+                                    <div class="imgtext-pro">
+                                       <p><em>“Nancy treated my dog like it was her own. I would for sure recommend her!”</em></p>
+                                       <p><em>- Joe M.</em> - Dog Lover</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="vpprofile">
+                     <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                           <div class="imgcont-profile">
+                              <img src="img/profile-img04.png">
+                           </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                           <div class="listprofile">
+                              <div class="profiledata">
+                                 <h3>Ben</h3>
+                                 <div class="serivice-pro">
+                                    <p class="ser-proname">Services: <span>Training</span></p>
+                                    <div class="divprofiletext">                                       
+                                       <p>ZIP CODE: <span><strong>58935</strong></span></p>
+                                    </div>
+                                 </div>
+                                 <div class="btnprofile">
+                                    <a href="#" class="btn small btn-primary">View profile</a>
+                                    <a href="#" class="btn small btn-secondary">Book</a>
+                                    <a href="#" class="btn small heartbtn fill"><span></span></a>
+                                 </div>
+                              </div>
+                              <div class="r-profile">
+                                 <p class="bluetext text-center"><strong>(21)</strong></p>
+                                 <div class="comment-pro">
+                                    <div class="img-prosec">
+                                       <img src="img/small-profile-img01.png">
+                                    </div>
+                                    <div class="imgtext-pro">
+                                       <p><em> “She was the best priced with quality services.” </em></p>
+                                       <p><em>- Janet K.</em> - Wag O Lishous</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="vpprofile">
+                     <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                           <div class="imgcont-profile">
+                              <img src="img/profile-img05.png">
+                           </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                           <div class="listprofile">
+                              <div class="profiledata">
+                                 <h3>Nina</h3>
+                                 <div class="serivice-pro">
+                                    <p class="ser-proname">Services: <span>Training</span></p>
+                                    <div class="divprofiletext">                                       
+                                       <p>ZIP CODE: <span><strong>58935</strong></span></p>
+                                    </div>
+                                 </div>
+                                 <div class="btnprofile">
+                                    <a href="#" class="btn small btn-primary">View profile</a>
+                                    <a href="#" class="btn small btn-secondary">Book</a>
+                                    <a href="#" class="btn small heartbtn"><span></span></a>
+                                 </div>
+                              </div>
+                              <div class="r-profile">
+                                 <p class="bluetext text-center"><strong>(36)</strong></p>
+                                 <div class="comment-pro">
+                                    <div class="img-prosec">
+                                       <img src="img/small-profile-img02.png">
+                                    </div>
+                                    <div class="imgtext-pro">
+                                       <p><em>“Nancy treated my dog like it was her own. I would for sure recommend her!”</em></p>
+                                       <p><em>- Joe M.</em>- Dog Lover</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="vpprofile">
+                     <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                           <div class="imgcont-profile">
+                              <img src="img/profile-img06.png">
+                           </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+                           <div class="listprofile">
+                              <div class="profiledata">
+                                 <h3>John</h3>
+                                 <div class="serivice-pro">
+                                    <p class="ser-proname">Services: <span>Training</span></p>
+                                    <div class="divprofiletext">                                       
+                                       <p>ZIP CODE: <span><strong>58935</strong></span></p>
+                                    </div>
+                                 </div>
+                                 <div class="btnprofile">
+                                    <a href="#" class="btn small btn-primary">View profile</a>
+                                    <a href="#" class="btn small btn-secondary">Book</a>
+                                    <a href="#" class="btn small heartbtn fill"><span></span></a>
+                                 </div>
+                              </div>
+                              <div class="r-profile">
+                                 <p class="bluetext text-center"><strong>(21)</strong></p>
+                                 <div class="comment-pro">
+                                    <div class="img-prosec">
+                                       <img src="img/small-profile-img01.png">
+                                    </div>
+                                    <div class="imgtext-pro">
+                                       <p><em>“She was the best priced with quality services.”</em></p>
+                                       <p><em>- Janet K.</em> - Wag O Lishous</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <footer class="footer text-white text-center py-5">
+         <div class="container mb-3">
+            <div class="row m-0">
+               <div class="col-lg-4 col-md-12 col-xs-12 fotlogo">
+                  <a href="#"><img src="img/mainlogo.png"></a>
+               </div>
+               <div class="col-lg-4 col-md-12 col-xs-12">
+                  <ul class="fotlist">
+                     <li><a href="#">Become a service provider</a></li>
+                     <li><a href="#">Our services</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-4 col-md-12 col-xs-12 sociallink">
+                  <ul class="">
+                     <li><a href="#" class="facebook"></a></li>
+                     <li><a href="#" class="insta"></a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="row m-0">
+               <div class="col-lg-12">
+                  <p class="m-0 small">&copy; 2020 A Place for Rover, Inc. All Rights Reserved.</p>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- Bootstrap core JavaScript -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery.range.js"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+      <script type="text/javascript">
+         $('.single-slider').jRange({
+            from: -2.0,
+            to: 2.0,
+            step: 0.5,
+            scale: [-2.0,-1.0,0.0,1.0,2.0],
+            format: '%s ML',
+            width: 220,
+            showLabels: true,
+            snap: true
+         });
+         
+         $('.range-slider').jRange({
+         from: 0,
+         to: 100,
+         //  step: 1,
+         // scale: [0,25,50,75,100],
+         format: '$%s',
+         width: 290,
+         showLabels: true,
+         isRange : false,
+         showScale:false
+         });
+         
+        $('#datepicker').datepicker({
+             weekStart: 1,
+             daysOfWeekHighlighted: "6,0",
+             autoclose: true,
+             todayHighlight: true,
+         });
+         $('#datepicker').datepicker("setDate", new Date());     
+
+         
+      </script>
+
+   </body>
+</html>

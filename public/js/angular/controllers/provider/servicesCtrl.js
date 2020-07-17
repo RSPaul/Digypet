@@ -1,8 +1,9 @@
 providerApp.controller('ServicesCtrl', function($scope, $http, $timeout, $locale,$routeParams, $location, $rootScope) {
 	
-	$scope.service = {images: []};
+	$scope.service = {pet_icon: "dog", pet_type: "", images: []};
 	$scope.serviceData = {images: []};
 	$scope.btnText = "Save Pet Service";
+	$scope.serviceActive = true;
 
 	$scope.loadServices = function() {
 		$http.get('/api/provider/services')
@@ -15,15 +16,21 @@ providerApp.controller('ServicesCtrl', function($scope, $http, $timeout, $locale
 
 	$scope.getServices = function(){
 
-			if($routeParams.id) { 
+		if($routeParams.id) { 
 			$http.get('/api/provider/service/'+ $routeParams.id)
 			.then(function (response) {
-				$scope.serviceData = response.data.services;
-				if(!$scope.serviceData.images || !$scope.serviceData.images.length) { $scope.serviceData.images = [] }
+				$scope.service = response.data.services;
+				if(!$scope.service.images || !$scope.service.images.length) { 
+					$scope.service.images = [] 
+				}
 			},function(error){
 				if(error.data.message == 'Unauthenticated.') { swal("Session Expired", "Your session is expired, please login again to continue.", "error"); $timeout(function() { $('#logout-form').submit(); },3000);} else { swal("Error", error.data.message, "error"); }
 			});
 		}
+	}
+
+	if($routeParams.id && $routeParams.id != '') {
+		$scope.getServices();
 	}
 
 	$scope.fileNameChanged = function (event) {
@@ -34,6 +41,7 @@ providerApp.controller('ServicesCtrl', function($scope, $http, $timeout, $locale
 		   	reader.onload = function () {
 		   	 $scope.loading = false;
 		     $scope.service.images.push(reader.result);
+		     $('.user-images').append("<img src='"+ reader.result +"'>")
 		   	};
 		});
 	}
@@ -50,25 +58,30 @@ providerApp.controller('ServicesCtrl', function($scope, $http, $timeout, $locale
 	}
 
 	$scope.savePetService = function() {
-		$scope.btnText = "Please Wait..";
-		$http.post('/api/provider/service/add', $scope.service)
-		.then(function (response) {
-		  	if(response.data.status) {
-		  		$scope.btnText = "Save Pet Service";
-		  		swal('Service Added', response.data.message, "success");
-		  		$location.path('/provider/services');
-		  	} else {
-		  		swal('Error', response.message, "error");
-		  	}
-		},function(error){
-			$scope.btnText = "Save Pet Service";
-	      	if(error.data.message == 'Unauthenticated.') { swal("Session Expired", "Your session is expired, please login again to continue.", "error"); $timeout(function() { $('#logout-form').submit(); },3000);} else { swal("Error", error.data.message, "error"); }
-		});
+		if($routeParams.id && $routeParams.id != '') {
+			$scope.updatePetService();
+		} else {
+
+			$scope.btnText = "Please Wait..";
+			$http.post('/api/provider/service/add', $scope.service)
+			.then(function (response) {
+			  	if(response.data.status) {
+			  		$scope.btnText = "Save Pet Service";
+			  		swal('Service Added', response.data.message, "success");
+			  		$location.path('/provider/services');
+			  	} else {
+			  		swal('Error', response.message, "error");
+			  	}
+			},function(error){
+				$scope.btnText = "Save Pet Service";
+		      	if(error.data.message == 'Unauthenticated.') { swal("Session Expired", "Your session is expired, please login again to continue.", "error"); $timeout(function() { $('#logout-form').submit(); },3000);} else { swal("Error", error.data.message, "error"); }
+			});
+		}
 	}
 
 	$scope.updatePetService = function() {
 		$scope.btnText = "Please Wait..";
-		$http.post('/api/provider/service/update', $scope.serviceData)
+		$http.post('/api/provider/service/update', $scope.service)
 		.then(function (response) {
 		  	if(response.data.status) {
 		  		$scope.btnText = "Update Pet Service";
@@ -100,11 +113,11 @@ providerApp.controller('ServicesCtrl', function($scope, $http, $timeout, $locale
           	$scope.loading = false;
           	if(response.data.status) {    
 	            swal('Deleted', response.data.message, "success");
-          		if(redirect) {
+          		//if(redirect) {
           			$scope.loadServices(); 
-          		} else {
-	            	$scope.loadServices();          			
-          		}
+          		//} else {
+	            	//$scope.loadServices();          			
+          		//}
           	} else {
           		swal('Error', response.data.message, "error");
           	}
@@ -114,5 +127,14 @@ providerApp.controller('ServicesCtrl', function($scope, $http, $timeout, $locale
           });
         }
       });
+	}
+
+	$scope.changePetIcon = function(type) {
+		if(type == 'Dogs') { $scope.service.pet_icon = "dog"; }
+		else if(type == 'Cats') { $scope.service.pet_icon = "cat"; }
+		else if(type == 'Birds') { $scope.service.pet_icon = "bird"; }
+		else if(type == 'Hamsters') { $scope.service.pet_icon = "hamsters"; }
+		else if(type == 'Turtles') { $scope.service.pet_icon = "turtles"; }
+		else if(type == 'Guinea Pig') { $scope.service.pet_icon = "pig"; }
 	}
 });

@@ -8,8 +8,8 @@ providerApp.config(function($routeProvider, $locationProvider) {
     
     $routeProvider
     .when("/provider", {
-        templateUrl : "templates/provider/dashboard.html",
-        controller: 'DashboardCtrl'
+        templateUrl : "templates/provider/profile.html",
+        controller: 'ProfileCtrl'
     })
     .when("/provider/bookings", {
         templateUrl : "templates/provider/bookings.html",
@@ -28,7 +28,7 @@ providerApp.config(function($routeProvider, $locationProvider) {
         controller: 'ServicesCtrl'
     })
     .when("/provider/service/edit/:id", {
-        templateUrl : "templates/provider/edit-service.html",
+        templateUrl : "templates/provider/add-service.html",
         controller: 'ServicesCtrl'
     })
     .when("/provider/payments", {

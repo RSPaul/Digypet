@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>digypet</title>
+      <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+      <!-- Bootstrap core CSS -->
+      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom fonts for this template -->
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="css/style-digy.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/jquery.range.css">
+   </head>
+   <body>
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+         <div class="container">
+            <a class="navbar-brand" href="#"><img src="img/logo-main.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <a class="navbar-logo" href="#"><img src="img/logo-main.png"></a>
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active px-lg-4">
+                     <a class="nav-link text-uppercase text-expanded" href="#">Become a Service Provider
+                     <span class="sr-only">(current)</span>
+                     </a>
+                  </li>
+                  <li class="nav-item px-lg-4">
+                     <a class="nav-link text-uppercase text-expanded" href="#">Our Services</a>
+                  </li>
+                  <li class="nav-item px-lg-2">
+                     <a class="nav-link text-uppercase text-expanded btn btn-secondary signbtn" href="#">Sign up</a>
+                  </li>
+                  <li class="nav-item px-lg-2">
+                     <a class="nav-link text-uppercase text-expanded btn btn-primary loginbtn" href="#">Login</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <section class="listview">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-3">
+                  <div class="leftpanel">
+                     <ul>
+                        <li><a href="#" class="profile"><span></span>Profile</a></li>
+                        <li><a href="#" class="booking"><span></span>Bookings</a></li>
+                        <li><a href="#" class="service"><span></span>Services</a></li>
+                        <li><a href="#" class="payment"><span></span>Payment</a></li>
+                        <li><a href="#" class="msg active"><span></span>Messages</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="col-lg-9">
+                  <div class="rightpanel">
+                     <div class="headingpanel">
+                        <p class="heading"><strong>Messages</strong></p>
+                     </div>
+                     <div class="servicelive">
+                        <div id="accordion" class="accountmsg">
+                           <div class="card">
+                              <div class="card-header">
+                                 <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                Chat History
+                                 </a>
+                              </div>
+                              <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                 <div class="card-body">
+                                    <ul class="chatwind">
+                                       <li>
+                                          <p class="namechat">Jan B.</p> <span class="btnchat"><a href="" class="btn btn-primary btn-sm">View</a><a href="" class="btn btn-primary btn-sm">Reply</a></span>
+                                       </li>
+                                       <li>
+                                          <p class="namechat">Frank G.</p> <span class="btnchat"><a href="" class="btn btn-primary btn-sm">View</a><a href="" class="btn btn-primary btn-sm">Reply</a></span>
+                                       </li>
+                                        <li>
+                                          <p class="namechat">Danny W.</p> <span class="btnchat"><a href="" class="btn btn-primary btn-sm">View</a><a href="" class="btn btn-primary btn-sm">Reply</a></span>
+                                       </li>
+                                       <li>
+                                          <p class="namechat">Susan K.</p> <span class="btnchat"><a href="" class="btn btn-primary btn-sm">View</a><a href="" class="btn btn-primary btn-sm">Reply</a></span>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <footer class="footer text-white text-center py-5">
+         <div class="container mb-3">
+            <div class="row m-0">
+               <div class="col-lg-4 col-md-12 col-xs-12 fotlogo">
+                  <a href="#"><img src="img/mainlogo.png"></a>
+               </div>
+               <div class="col-lg-4 col-md-12 col-xs-12">
+                  <ul class="fotlist">
+                     <li><a href="#">Become a service provider</a></li>
+                     <li><a href="#">Our services</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-4 col-md-12 col-xs-12 sociallink">
+                  <ul class="">
+                     <li><a href="#" class="facebook"></a></li>
+                     <li><a href="#" class="insta"></a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="row m-0">
+               <div class="col-lg-12">
+                  <p class="m-0 small">&copy; 2020 A Place for Rover, Inc. All Rights Reserved.</p>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <div id="dogpop" class="homevidio modal fade" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <div class="topbar-md">
+                     <div class="textco">
+                        <p>Service provider <span>Jane smith</span></p>
+                        <div class="imgcls"><img src="img/small-profile-img01.png"></div>
+                     </div>
+                     <div class="poptop-i">
+                        <div class="idog">
+                           <a href="javascript:void(0)" data-toggle="modal" data-target="#dogpop" class="dog"><span class=""></span>Dog</a>
+                        </div>
+                        <div class="poptext">
+                           <h3>Dog Training <span>Service</span></h3>
+                        </div>
+                     </div>
+                  </div>
+                  <img src="img/imgright.jpg">
+                  <button type="button" class="close cls" data-dismiss="modal"></button>
+               </div>
+               <div class="modal-body">
+                  <div class="mainpop-i">
+                     <p class="text-black-50 text-uppercase mb-1"><strong>Pet service description</strong></p>
+                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                     <div class="row">
+                        <div class="col-lg-4 pricetext text-left">
+                           <p class="text-black-50 text-uppercase mb-1"><strong>Pet type</strong></p>
+                           <p>Dog - Pug</p>
+                        </div>
+                        <div class="col-lg-4 pricetext text-left">
+                           <p class="text-black-50 text-uppercase mb-1"><strong>Pet service price</strong></p>
+                           <p class="largetext">$30 - <span class="text-black-50 text-uppercase">Per session</span></p>
+                        </div>
+                        <div class="col-lg-4 pricetext text-left">
+                           <p class="text-black-50 text-uppercase mb-1"><strong>Service location</strong></p>
+                           <p>5055 S. Parker Street <br>Round Rock, Texas 75213 </p>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                           <a href="" class="btn btn-primary btn-xl btn-block bookbtn">Book this service</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Bootstrap core JavaScript -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+      <script type="text/javascript">
+         $(' .owl_1').owlCarousel({
+           loop:false,
+           margin:2, 
+           responsiveClass:true,autoplayHoverPause:true,
+           autoplay:true,
+           slideSpeed: 400,
+           paginationSpeed: 400,
+           autoplayTimeout:3000,
+           responsive:{
+            0:{
+            items:2,
+            nav:true,
+            loop:false
+            },
+            600:{
+            items:3,
+            nav:true,
+            loop:false
+            },
+            1100:{
+            items:4,
+            nav:true,
+            loop:false
+            }
+          }
+         })  
+         
+         
+         $(' .owl_2').owlCarousel({
+           loop:false,
+           margin:2, 
+           responsiveClass:true,autoplayHoverPause:true,
+           autoplay:true,
+           slideSpeed: 400,
+           paginationSpeed: 400,
+           autoplayTimeout:3000,
+           responsive:{
+            0:{
+            items:2,
+            nav:true,
+            loop:false
+            },
+            600:{
+            items:3,
+            nav:true,
+            loop:false
+            },
+            1000:{
+            items:6,
+            nav:true,
+            loop:false
+            }
+          }
+         })   
+         
+         
+          
+      </script>
+   </body>
+</html>
