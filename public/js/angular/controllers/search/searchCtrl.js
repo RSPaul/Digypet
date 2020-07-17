@@ -87,12 +87,18 @@ searchApp.controller('SearchCtrl', function($scope, $http, $timeout, $locale, $l
 	}
 
 	$scope.filterByServiceDate = function(){
+		let formatted_date = '';
 		if($scope.serviceDate && $scope.serviceDate != ''){
 		$scope.listproviders = [];
 			angular.forEach($scope.filterlistproviders, function(value, key) {
 				angular.forEach(value.services, function(value1, key1) {
 					let current_datetime = new Date(value1.created_at)
-					let formatted_date = current_datetime.getDate() + "/0" + (current_datetime.getMonth() + 1) + "/" + current_datetime.getFullYear();
+					if(current_datetime.getMonth()+ 1 < 10){
+
+						formatted_date = current_datetime.getDate() + "/0" + (current_datetime.getMonth() + 1) + "/" + current_datetime.getFullYear();
+					}else{
+						formatted_date = current_datetime.getDate() + "/" + (current_datetime.getMonth() + 1) + "/" + current_datetime.getFullYear();
+					}
 					if(formatted_date == $scope.serviceDate){
 						$scope.listproviders.push(value);
 						$scope.listproviders = $scope.listproviders.filter(unique);
