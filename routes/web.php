@@ -62,3 +62,4 @@ Route::get('/api/provider/service/{id}', 'Provider\ProviderController@viewPetSer
 Route::delete('/api/provider/service/delete/{id}', 'Provider\ProviderController@deletePetService')->name('provider_delete_pet_service');
 
 Route::get('/api/provider/get-bank-account', 'Provider\ProviderController@getBankAccount')->name('provider_bank_account');
+Route::get('/api/provider/update-account', 'Provider\ProviderController@updateAccount')->name('provider_update_bank_account');

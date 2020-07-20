@@ -192,4 +192,234 @@ class ProviderController extends Controller
             return response()->json(['message' => $msg, "status" => false]);
         }
     }
+
+    public function updateAccount(Request $request) {
+
+        $msg = "";
+        $data = $request->all();
+        $details = PaymentDetails::where(['user_id' => Auth::user()->id])->first();
+        if($details) {
+            
+            if($details->account_number != $data['account_number']) {
+                $validatedData = $request->validate([
+                    'account_number' => 'required|string|unique:payment_details',
+                ]);
+            }
+            $extra_data = unserialize($details->extra_data);
+            try {
+                //create file
+                if($data['front'] && $data['front'] !='' ) {
+                    $fp = fopen($data['front'], 'r');
+                    $document_front = \Stripe\File::create([
+                      'purpose' => 'identity_document',
+                      'file' => $fp
+                    ]);                    
+                    $document_front_id = $document_front->id;
+                    $data['document_front_id'] = $document_front_id;
+                } else  {
+                    $document_front_id = $data['document_front_id'];
+                }
+                if($data['back'] && $data['back'] !='' ) {
+                    $fp = fopen($data['back'], 'r');
+                    $document_back = \Stripe\File::create([
+                      'purpose' => 'identity_document',
+                      'file' => $fp
+                    ]);                    
+                    $document_back_id = $document_back->id;
+                    $data['document_back_id'] = $document_back_id;
+                } else {
+                    $document_back_id = $data['document_back_id'];
+                    $data['document_back_id'] = $document_back_id;
+                }
+
+                $account = \Stripe\Account::update(
+                  $details->account,
+                  [
+                    'external_account' => [
+                        'object' => 'bank_account',
+                        'country' => 'US',
+                        'currency' => 'usd',
+                        'routing_number' => $data['routing_number'],
+                        'account_number' => $data['account_number'],
+                        'account_holder_name' => Auth::user()->name,
+                    ],
+                    'individual' => [
+                        'first_name' => Auth::user()->first_name,
+                        'last_name' => Auth::user()->last_name,
+                        'email' => Auth::user()->email,
+                        'phone' => $data['phone'],
+                        //'id_number' => $data['id_number'],
+                       // 'ssn_last_4' => $data['ssn_last_4'],
+                        'address' => [
+                            'line1' => $data['line1'],
+                            'line2' => $data['line2'],
+                            'city' => $data['city'],
+                            'state' => $data['state'],
+                            'country' => $data['country'],
+                            'postal_code' => $data['postal_code'],
+                        ],
+                        'dob' => [
+                            'day' => $data['day'],
+                            'month' => $data['month'],
+                            'year' => $data['year'],
+                        ]//,
+                        // 'verification' => [
+                        //     'document' => [
+                        //         'front' => ($data['front'] && $data['front'] !='') ? $document_front_id : '',
+                        //         'back' => ($data['back'] && $data['back'] !='') ? $document_back_id : ''
+                        //     ]
+                        // ]
+                    ],
+                    'business_profile' => [
+                        'url' => $data['url'],
+                        'mcc' => $data['mcc']
+                    ],
+                  ]
+                );
+                $data['account_id'] = $account->external_accounts->data[0]->id;
+                $data['account'] = $account->external_accounts->data[0]->account;
+                $data['bank_name'] = $account->external_accounts->data[0]->bank_name;
+                $data['last4'] = $account->external_accounts->data[0]->last4;
+                $data['request_data'] = serialize($data);
+
+                $details = PaymentDetails::find($details->id);
+                $details->account_id = $account->external_accounts->data[0]->id;
+                $details->account = $account->external_accounts->data[0]->account;
+                $details->bank_name = $account->external_accounts->data[0]->bank_name;
+                $details->last4 = $account->external_accounts->data[0]->last4;
+                $details->request_data = $data['request_data'];
+
+                $details->save();
+
+                return response()->json(['message' => "Payment Information updated successfully!", "status" => true]);
+
+            } catch (\Stripe\Error\RateLimit $e) {
+                $msg = $e->getMessage();              
+            } catch (\Stripe\Error\InvalidRequest $e) {
+                $msg = $e->getMessage();
+            } catch (\Stripe\Error\Authentication $e) {
+                $msg = $e->getMessage();
+            } catch (\Stripe\Error\ApiConnection $e) {
+                $msg = $e->getMessage();
+            } catch (\Stripe\Error\Base $e) {
+                $msg = $e->getMessage();
+            } catch (Exception $e) {
+                $msg = $e->getMessage();
+            }
+            
+            return response()->json(['message' => $msg, "status" => false]);
+        
+        } else {
+
+            $validatedData = $request->validate([
+                'account_number' => 'required|string|unique:payment_details',
+            ]);
+
+            try {
+
+                //create file
+                if($data['front'] && $data['front'] !='') {
+                    $fp = fopen($data['front'], 'r');
+                    $document_front = \Stripe\File::create([
+                      'purpose' => 'identity_document',
+                      'file' => $fp
+                    ]);                    
+                    $document_front_id = $document_front->id;
+                    $data['document_front_id'] = $document_front_id;
+                } else  {
+                    $document_front_id = $data['document_front_id'];
+                }
+                if($data['back'] && $data['back'] !='') {
+                    $fp = fopen($data['back'], 'r');
+                    $document_back = \Stripe\File::create([
+                      'purpose' => 'identity_document',
+                      'file' => $fp
+                    ]);                    
+                    $document_back_id = $document_back->id;
+                    $data['document_back_id'] = $document_back_id;
+                } else {
+                    $document_back_id = $data['document_back_id'];
+                    $data['document_back_id'] = $document_back_id;
+                }
+
+                $account = \Stripe\Account::create([
+                    'country' => 'US',
+                    'type' => 'custom',
+                    'requested_capabilities' => ["transfers", "card_payments"],
+                    'business_type' => 'individual',
+                    'individual' => [
+                        'first_name' => Auth::user()->first_name,
+                        'last_name' => Auth::user()->last_name,
+                        'email' => Auth::user()->email,
+                        'phone' => $data['phone'],
+                        'id_number' => $data['id_number'],
+                        'ssn_last_4' => $data['ssn_last_4'],
+                        'address' => [
+                            'line1' => $data['line1'],
+                            'line2' => $data['line2'],
+                            'city' => $data['city'],
+                            'state' => $data['state'],
+                            'country' => $data['country'],
+                            'postal_code' => $data['postal_code'],
+                        ],
+                        'dob' => [
+                            'day' => $data['day'],
+                            'month' => $data['month'],
+                            'year' => $data['year'],
+                        ],
+                        'verification' => [
+                            'document' => [
+                                'front' => ($data['front'] && $data['front'] !='') ? $document_front_id: '',
+                                'back' => ($data['back'] && $data['back'] !='') ? $document_back_id : ''
+                            ]
+                        ]
+                    ],
+                    'business_profile' => [
+                        'url' => $data['url'],
+                        'mcc' => $data['mcc']
+                    ],
+                    'external_account'=> [
+                        'object' => 'bank_account',
+                        'country' => 'US',
+                        'currency' => 'usd',
+                        'routing_number' => $data['routing_number'],
+                        'account_number' => $data['account_number'],
+                        'account_holder_name' => Auth::user()->first_name.' '. Auth::user()->last_name,
+                    ],
+                    'tos_acceptance' => [
+                        'date' => time(),
+                        'ip' => $_SERVER['REMOTE_ADDR']
+                    ]
+                ]);
+
+                $data['user_id'] = Auth::user()->id;
+                $data['account_type'] = 'custom';
+                $data['account_id'] = $account->external_accounts->data[0]->id;
+                $data['account'] = $account->external_accounts->data[0]->account;
+                $data['bank_name'] = $account->external_accounts->data[0]->bank_name;
+                $data['last4'] = $account->external_accounts->data[0]->last4;
+                $data['request_data'] = serialize($data);
+
+                $details = new PaymentDetails($data);
+                $details->save();
+                
+                return response()->json(['message' => 'Payment Information saved successfully!', "status" => true]);
+
+            } catch (\Stripe\Error\RateLimit $e) {
+                $msg = $e->getMessage();              
+            } catch (\Stripe\Error\InvalidRequest $e) {
+                $msg = $e->getMessage();
+            } catch (\Stripe\Error\Authentication $e) {
+                $msg = $e->getMessage();
+            } catch (\Stripe\Error\ApiConnection $e) {
+                $msg = $e->getMessage();
+            } catch (\Stripe\Error\Base $e) {
+                $msg = $e->getMessage();
+            } catch (Exception $e) {
+                $msg = $e->getMessage();
+            }
+
+            return response()->json(['message' => $msg, "status" => false]);
+        }
+    }
 }

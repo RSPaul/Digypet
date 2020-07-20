@@ -20,7 +20,7 @@ providerApp.controller('PaymentsCtrl', function($scope, $http, $timeout, $locale
 
   $scope.updateBankAccount = function () {
     $scope.accUpdateBtn = 'Please wait..';
-    $http.post('/update-account', $scope.account)
+    $http.post('/api/provider/update-account', $scope.account)
     .then(function (response) {
       var data = response.data;
       if(response.status) {
