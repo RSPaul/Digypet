@@ -1,4 +1,4 @@
-<section class="listview">
+<section class="listview" ng-init="getBankDetails()">
    <div class="container">
       <div class="row">
          <div class="col-lg-3">
@@ -17,6 +17,8 @@
                <!-- <p class="text-uppercase"><strong>Payment</strong></p> -->
                <p class="text-uppercase"><strong>Account Details</strong></p>
                <div class="profileform1 mb-3">
+                  <div class="alert alert-danger" ng-if="!account.name || !account.routing_number || !account.account_number || !account.year || !account.day || !account.month || !account.address1 || !account.address1 || !account.phone || !account.city || !account.state || !account.country || !account.zip || !account.mcc || !account.url || !account.id_number || !account.ssn_last_4 || !account.front || !account.back">All Fields are required.</div>
+                  <form ng-submit="updateBankAccount()" novalidate>
                   <div class="row">
                      <div class="col-lg-4">
                         <div class="form-group">
@@ -81,7 +83,10 @@
                      </div>
                      <div class="col-lg-4">
                         <div class="form-group">
-                           <input type="text" name="country" ng-model="account.country" class="form-control" placeholder="Country">
+                           <select name="country" ng-model="account.country" class="form-control" required>
+                                 <option value="">Select Country</option>
+                                 <option value="US">Unites States</option>
+                           </select>
                         </div>
                      </div>
                   </div>
@@ -94,7 +99,7 @@
                      <div class="col-lg-4">
                         <div class="form-group">
                            <select name="mcc" ng-model="bank.mcc" class="form-control" required="">
-                              <option value="" selected="selected">Select</option>
+                              <option value="" selected="selected">Select Industry</option>
                               <option value="1520">General Contractors-Residential and Commercial</option>
                            </select>
                         </div>
@@ -119,6 +124,7 @@
                      <div class="col-lg-4">
                         <div class="form-group">
                            <input type="file" name="front_pic" class="form-control" required="" ng-upload-change="fileNameChanged($event, 'front')" value="PHOTO ID - FRONT">
+                           <input type="hidden" id="front" name="front" >
                         </div>
                      </div>
                   </div>
@@ -126,13 +132,15 @@
                      <div class="col-lg-4">
                         <div class="form-group">
                            <input type="file" name="back_pic" class="form-control" required="" ng-upload-change="fileNameChanged($event, 'back')" value="PHOTO ID - Back">
+                           <input type="hidden" id="back" name="back" >
                         </div>
                      </div>
                   </div>
                   <div class="row">
                      <div class="col-lg-6">
                         <div class="form-group">
-                           <input type="submit" name="" class="btn btn-primary btn-block" value="Add card">
+                           <!-- <input type="submit" name="" class="btn btn-primary btn-block" value="Add card"> -->
+                           <input type="submit" name="submit" value="@{{accUpdateBtn}}" class="btn btn-primary" ng-disabled="!account.name || !account.routing_number || !account.account_number || !account.year || !account.day || !account.month || !account.address1 || !account.address1 || !account.phone || !account.city || !account.state || !account.country || !account.zip || !account.mcc || !account.url || !account.id_number || !account.ssn_last_4 || !account.front || !account.back">
                         </div>
                      </div>
                      <div class="col-lg-12">
@@ -151,6 +159,7 @@
                         </div>
                      </div>
                   </div>
+                </form>
                </div>
                <p class="text-uppercase mb-2"><strong>Payment list</strong></p>
                <div class="servicelive payment">

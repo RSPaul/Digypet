@@ -122,5 +122,6 @@
     <script src="{{asset('js/angular/controllers/provider/profileCtrl.js')}}"></script>
     <script src="{{asset('js/angular/controllers/provider/dashboardCtrl.js')}}"></script>
     <script src="{{asset('js/angular/controllers/provider/servicesCtrl.js')}}"></script>
+    <script src="{{asset('js/angular/controllers/provider/paymentsCtrl.js')}}"></script>
 </body>
 </html>

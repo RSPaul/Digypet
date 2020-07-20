@@ -33,7 +33,7 @@ providerApp.config(function($routeProvider, $locationProvider) {
     })
     .when("/provider/payments", {
         templateUrl : "templates/provider/payments.html",
-        controller: 'ProfileCtrl'
+        controller: 'PaymentsCtrl'
     })
     .when("/provider/messages", {
         templateUrl : "templates/provider/messages.html",

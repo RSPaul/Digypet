@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Services;
 use App\User;
+use App\PaymentDetails;
 
 class ProviderController extends Controller
 {
@@ -137,5 +138,58 @@ class ProviderController extends Controller
 							  'message' => 'Service deleted.');
     		return response()->json($response);
     	}
+    }
+
+    public function getBankAccount(){
+    	if(Auth::check()) {
+    		$details = PaymentDetails::where(['user_id' => Auth::user()->id])->first();
+	        $request_data = array('account_type' => '',
+	                                'name' => '',
+	                                'routing_number' => '',
+	                                'account_number' => '',
+	                                'day' => '',
+	                                'month' => '',
+	                                'year' => '',
+	                                'line1' => '',
+	                                'line2' => '',
+	                                'phone' => '',
+	                                'city' => '',
+	                                'state' => '',
+	                                'country' => '',
+	                                'postal_code' => '',
+	                                'mcc' => '',
+	                                'url' => '',
+	                                'id_number' => '',
+	                                'ssn_last_4' => '',
+	                                'front_pic' => '',
+	                                'back_pic' => '',
+	                                'front' => '',
+	                                'back' => '',
+	                                'document_front_id' => '',
+	                                'document_back_id' => '');
+	        if($details) {
+	            $request_data = unserialize($details->request_data);
+	        }
+	        return response()->json(['message' => $details, "status" => true, 'extra_data' => $request_data]);
+    	}
+    }
+
+    public function uploadImage(Request $request) {
+        try {
+            $data = $request->image;
+            list($type, $data) = explode(';', $data);
+            list(, $data)      = explode(',', $data);
+            $data = base64_decode($data);
+            $image_name = time().'.png';
+            $path = public_path() . "/uploads/profiles/" . $image_name;
+
+            file_put_contents($path, $data);
+
+            return response()->json(['path' => $path, "status" => true]);
+
+        } catch (Exception $e) {
+            $msg = $e->getMessage();
+            return response()->json(['message' => $msg, "status" => false]);
+        }
     }
 }

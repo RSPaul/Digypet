@@ -36,6 +36,7 @@ Route::post('/api/filterProviders', 'SearchController@filterProviders')->name('f
 Route::get('/api/me', 'HomeController@authUser')->name('auth_user');
 Route::post('/api/profile', 'HomeController@updateProfile')->name('update_auth_user');
 Route::post('/api/passowrd/change', 'HomeController@updatePassword')->name('update_auth_user_password');
+Route::post('/upload-image', 'Provider\ProviderController@uploadImage')->name('uploadImage');
 
 /*
 * Provider Routes
@@ -50,6 +51,7 @@ Route::get('/provider/service/edit/{id}', 'Provider\ProviderController@dashboard
 Route::get('/provider/payments', 'Provider\ProviderController@dashboard')->name('provider_payments');
 Route::get('/provider/messages', 'Provider\ProviderController@dashboard')->name('provider_messages');
 
+
 /*
 * Provider API Routes
 */
@@ -58,3 +60,5 @@ Route::post('/api/provider/service/add', 'Provider\ProviderController@addPetServ
 Route::post('/api/provider/service/update', 'Provider\ProviderController@updatePetService')->name('provider_add_pet_service');
 Route::get('/api/provider/service/{id}', 'Provider\ProviderController@viewPetService')->name('provider_view_pet_service');
 Route::delete('/api/provider/service/delete/{id}', 'Provider\ProviderController@deletePetService')->name('provider_delete_pet_service');
+
+Route::get('/api/provider/get-bank-account', 'Provider\ProviderController@getBankAccount')->name('provider_bank_account');
